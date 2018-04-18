@@ -24,7 +24,8 @@ class LogInForm extends Component {
   };
 
   onSubmit = (e) => {
-    const {username, email, password1} = this.state;
+    // const {username} = this.state;
+    const {email, password1} = this.state;
     const {history} = this.props;
     console.log(auth);
     console.log(auth.doCreateUserWithEmailAndPassword);

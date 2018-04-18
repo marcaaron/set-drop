@@ -3,28 +3,29 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require('path');
-const MONGO_URI = process.env.MONGO_URI;
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const config = require('./db');
+const Sets = require('./models/Sets');
+const SetsRoute = require('./routes/SetsRoute');
 
 app.use('/', express.static(`${__dirname}/client/build`));
 
-app.get('/api/', (req, res) => {
-  res.json();
+app.get('/api/get', (req, res, next)=>{
+  console.log('Data Received');
+  res.send('Data Received');
 });
 
-MongoClient.connect(MONGO_URI, function (err, db) {
-  console.log(MONGO_URI);
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    console.log('Connection established to', MONGO_URI);
-    // do some work here with the database.
-
-    //Close connection
-    db.close();
-  }
+app.post('/api/post', (req, res, next)=>{
+  console.log('Data Posted');
+  res.send('Data Posted');
 });
+
+mongoose.connect(config.db)
+.then(
+  ()=>{console.log('Connected to MongoDB via Mongoose') },
+  err => {console.log('There was an error connecting to the database')}
+ );
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

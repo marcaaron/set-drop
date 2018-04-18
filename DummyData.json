@@ -1,0 +1,28 @@
+{
+  "username": "dutchdubs",
+  "location": {
+    "venue":"Holocene",
+    "address": {
+      "address_line":"1001 SE Morrison St",
+      "city":"Portland",
+      "state":"OR",
+      "country":"USA",
+      "postal_code": 97214
+    },
+    "coords":{
+      "lng":-122.655456,
+      "lat":45.517379
+    }
+  },
+  "list":[
+    {
+      "artist": {
+        "name": "SZA"
+      },
+      "title": {
+        "name": "All the Stars"
+      },
+      "genre": "RnB"
+    }
+  ]
+}

@@ -6,26 +6,22 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./db');
-const Sets = require('./models/Sets');
-const SetsRoute = require('./routes/SetsRoute');
+const SetList = require('./models/SetList');
+const SetListRoute = require('./routes/SetListRoute');
 
+// Serve React Front-End to Root
 app.use('/', express.static(`${__dirname}/client/build`));
 
-app.get('/api/get', (req, res, next)=>{
-  console.log('Data Received');
-  res.send('Data Received');
-});
 
-app.post('/api/post', (req, res, next)=>{
-  console.log('Data Posted');
-  res.send('Data Posted');
-});
-
-mongoose.connect(config.db)
-.then(
+// Connect to MongoDB
+mongoose.connect(config.db).then(
   ()=>{console.log('Connected to MongoDB via Mongoose') },
   err => {console.log('There was an error connecting to the database')}
- );
+);
+
+// Set Up API Post Route for Individual Set Lists
+app.use(bodyParser.json());
+app.use('/api/setlists', SetListRoute);
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

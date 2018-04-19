@@ -39,6 +39,24 @@ class TrackList extends Component {
     this.setState({list});
   }
 
+  componentDidUpdate(){
+    if(this.props.submitSuccess[1]){
+      const list = [
+        {
+          artist:{
+            name:''
+          },
+          title:{
+            name:''
+          },
+          genre:''
+        }
+      ];
+      this.setState({list});
+      this.props.resetChildren(1);
+    }
+  }
+
   removeTrack = (e, index) => {
     e.preventDefault();
     if(this.state.list.length > 1){

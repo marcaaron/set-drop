@@ -27,9 +27,6 @@ class LogInForm extends Component {
     // const {username} = this.state;
     const {email, password1} = this.state;
     const {history} = this.props;
-    console.log(auth);
-    console.log(auth.doCreateUserWithEmailAndPassword);
-    console.log(email, password1);
     auth.LogInEmail(email, password1)
       .then(authUser => {
         console.log(authUser);

@@ -10,17 +10,18 @@ const Nav = ({authUser}) =>
 
 const NavAuth = () =>
   <ul className="nav">
-    <li><Link to={routes.LANDING}>Landing</Link></li>
     <li><Link to={routes.HOME}>Home</Link></li>
-    <li><Link to={routes.SIGN_UP}>Sign Up</Link></li>
-    <li><Link to={routes.LOG_IN}>Log In</Link></li>
+    <li><Link to={routes.ADD}>Add Set</Link></li>
+    <li><Link to={routes.SETS}>Sets</Link></li>
     <li><SignOutButton /></li>
   </ul>
 
 const NavNonAuth = () =>
   <ul>
-    <li><Link to={routes.LANDING}>Landing</Link></li>
+    <li><Link to={routes.LANDING}>Home</Link></li>
+    <li><Link to={routes.SIGN_UP}>Sign Up</Link></li>
     <li><Link to={routes.LOG_IN}>Log In</Link></li>
+    <li><Link to={routes.SETS}>Sets</Link></li>
   </ul>
 
 export default Nav;

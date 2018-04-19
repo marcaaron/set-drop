@@ -4,3 +4,6 @@ export const LANDING = '/';
 export const HOME = '/home';
 export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';
+export const SETS = '/sets';
+export const SET = '/set/:id';
+export const ADD = '/add-set';

@@ -8,10 +8,13 @@ const bodyParser = require('body-parser');
 const config = require('./db');
 const SetList = require('./models/SetList');
 const SetListRoute = require('./routes/SetListRoute');
+const cors = require('cors');
 
 // Serve React Front-End to Root
 app.use('/', express.static(`${__dirname}/client/build`));
 
+// Enable Cors So React Dev Server Can Interact with API
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(config.db).then(

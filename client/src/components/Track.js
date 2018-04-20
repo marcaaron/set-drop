@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
 
 class Track extends Component {
-
-  tempFunc = (e) =>{
-    e.preventDefault();
-  }
-
   render() {
-    const {handleChange, addInitTrack, removeTrack, list, index, title, artist, genre} = this.props;
+    const {handleChange, addListItem, removeListItem, list, index, title, artist, genre} = this.props;
     return (
           <div className="track-box">
             <input
-              onChange={(e)=>handleChange(e, 'artist', index)}
+              onChange={(e)=>handleChange(e, 'artist', index, 'name')}
               type="text"
-              placeholder={artist !== '' ? artist : "Artist"}
+              placeholder="Artist"
               value={artist && artist}
             />
             <input
-              onChange={(e)=>handleChange(e, 'title', index)}
+              onChange={(e)=>handleChange(e, 'title', index, 'name')}
               type="text"
-              placeholder={title !== '' ? title : "Title"}
+              placeholder="Title"
               value={title && title}
             />
             <input
               onChange={(e)=>handleChange(e, 'genre', index)}
               type="text"
-              placeholder={genre !== '' ? genre : "Genre"}
+              placeholder="Genre"
               value={genre && genre}
             />
             <div>{index}</div>
-            {list.length-1 === index && <button onClick={addInitTrack}>Add Track</button>}
-            {list.length > 1 && <button onClick={(e)=>removeTrack(e,index)}>Remove Track</button>}
-
+            <button onClick={(e)=>addListItem(e,index+1)}>Add Track</button>
+            {list.length > 1 && <button onClick={(e)=>removeListItem(e,index)}>Remove Track</button>}
           </div>
     );
   }

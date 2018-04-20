@@ -29,29 +29,28 @@ router.route('/').get(function (req, res) {
   });
 });
 
-// UPDATE
-router.route('/update/:id').post(function (req, res) {
-  SetList.findById(req.params.id, function(err, set) {
-    if (!set){
-      return next(new Error('Could not load Document'));
+//GET BY ID
+router.route('/edit/:id').get(function (req, res) {
+  SetList.findById(req.params.id, function (err, setlists)
+  {
+    if(err){
+      console.log(err);
     }
     else {
-      console.log('Set Found');
-      console.log(set);
-
-      // Edit set params via the front-end req body ajax
-      // set.location = ...
-      // set.setlist = ...
-      // etc ...
-
-      set.save().then(set => {
-          res.json('Successfully Updated');
-      })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
+      console.log('Set Located');
+      return res.json(setlists);
     }
   });
+});
+
+// UPDATE
+router.route('/update/:id').put(function (req, res) {
+  SetList.findByIdAndUpdate(req.params.id,{$set:req.body})
+    .then(set=> {
+      res.status(200).json({'set': 'Set updated successfully'});
+    }).catch(err => {
+      res.status(400).send('unable to update set');
+    });
 });
 
 // DELETE
@@ -60,6 +59,20 @@ router.route('/delete/:id').get(function (req, res) {
           if(err) res.json(err);
           else res.json('Successfully removed');
       });
+});
+
+// RETURN SETS FOR GIVEN USER
+router.route('/:username').get(function (req, res) {
+  SetList.find({username:`${req.params.username}`},function (err, setlists){
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log(`located ${req.params.username}`);
+      // console.log(res);
+      return res.json(setlists);
+    }
+  });
 });
 
 

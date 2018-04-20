@@ -9,10 +9,10 @@ import Nav from './Nav';
 import Landing from './Landing';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
-import Add from './Add';
+import Edit from './Edit';
 
 import Set from './Set';
-
+import UserSets from './UserSets';
 import Sets from './Sets';
 import Home from './Home';
 import Account from './Account';
@@ -29,14 +29,15 @@ class App extends Component {
     this.state = {
       authUser: null,
       sets: [],
-      currentUser: null
+      currentUser: null,
+      selectedSetID: null,
     }
   }
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
       if(authUser){
-        console.log('authUser!');
+        console.log('user is authorized');
         db.onceGetUsers().then(snapshot =>{
           // const snappyshot = snapshot.val();
           const currentUser = snapshot.val()[authUser.uid].username;
@@ -46,20 +47,27 @@ class App extends Component {
           this.setState(() => ({ authUser: null, currentUser:null }));
       }
     });
+    this.updateSets();
+  }
 
+  handleSelectedSetID = (id) => {
+    const selectedSetID = id;
+    this.setState({selectedSetID});
+  }
+
+  updateSets = () =>{
     this.callApi()
       .then(res => {
-        // console.log('sets loaded');
-        // console.log(res);
+        console.log('updating set');
         this.setState({ sets: res })
       })
       .catch(err => console.log(err));
-
   }
 
   callApi = async () => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
 
     // Change API endpoint back to /api/setlists for deployment
     // const response = await fetch('/api/setlists', headers);
@@ -67,16 +75,20 @@ class App extends Component {
     const response = await fetch('http://localhost:5000/api/setlists/', headers);
     const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
-    return body;
+    if (response.status !== 200) {
+      console.log('problem with response');
+      throw Error(body.message);
+    }else{
+      return body;
+    }
   };
 
   render() {
-    const {authUser, sets, currentUser} = this.state;
+    const {authUser, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
         <div>
-          <Nav authUser={authUser}/>
+          <Nav authUser={authUser} currentUser={currentUser}/>
           <hr/>
           <Route
             exact path={routes.LANDING}
@@ -84,11 +96,11 @@ class App extends Component {
           />
           <Route
             exact path={routes.ADD}
-            component={() => <Add currentUser={currentUser}/>}
+            component={({match}) => <Edit updateSets={this.updateSets} currentUser={currentUser} route={match}/>}
           />
           <Route
             exact path={routes.SETS}
-            component={() => <Sets sets={sets}  />}
+            component={() => <Sets updateSets={this.updateSets} sets={sets}  />}
           />
           <Route
             exact path={routes.SIGN_UP}
@@ -100,7 +112,11 @@ class App extends Component {
           />
           <Route
             exact path={routes.SET}
-            component={({match}) => <Set id={match.params} sets={sets}/>}
+            component={({match}) => <Set handleSelectedSetID={this.handleSelectedSetID} slug={match.params} sets={sets}/>}
+          />
+          <Route
+            exact path={routes.USER_SETS}
+            component={({match}) => <UserSets username={match.params}/>}
           />
           <Route
             exact path={routes.HOME}
@@ -109,6 +125,10 @@ class App extends Component {
           <Route
             exact path={routes.ACCOUNT}
             component={() => <Account />}
+          />
+          <Route
+            exact path={routes.EDIT}
+            component={({match}) => <Edit route={match} id={selectedSetID} updateSets={this.updateSets} currentUser={currentUser} slug={match.params} />}
           />
         </div>
       </Router>

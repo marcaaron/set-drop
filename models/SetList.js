@@ -3,11 +3,9 @@ const Schema = mongoose.Schema;
 
 const SetListSchema = new Schema(
   {
+    slug: String,
     username: String,
-    date: {
-      type:Date,
-      default: Date.now
-    },
+    date: String,
     location: {
       venue: String,
       address: {

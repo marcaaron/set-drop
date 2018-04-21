@@ -4,8 +4,8 @@ const uuidv1 = require('uuid/v1');
 
 class Sets extends Component {
 
-  componentWillMount(){
-    console.log('componentDidMount');
+  componentDidUpdate(){
+    this.props.updateSets();
   }
 
   render() {

@@ -79,6 +79,7 @@ class App extends Component {
       console.log('problem with response');
       throw Error(body.message);
     }else{
+      console.log('sets updated');
       return body;
     }
   };

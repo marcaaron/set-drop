@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TrackList from './TrackList';
 import VenueInfo from './VenueInfo';
+import validate from '../helpers/validate';
 const slugify = require('slugify');
 
 const INIT_STATE = {
@@ -95,6 +96,7 @@ class Edit extends Component {
    };
 
 
+
   handleSubmit = (e) => {
     e.preventDefault();
     const json = {...this.state.json};
@@ -106,16 +108,21 @@ class Edit extends Component {
     console.log(typeof date);
     json.slug = slug;
     json.date = date;
-    // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN PUT
-    if(this.props.route.path !== '/add-set'){
-      if(this.hasChanged(json)){
-        this.putApi(json);
+    if(validate(json)){
+      // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN PUT
+      if(this.props.route.path !== '/add-set'){
+        if(this.hasChanged(json)){
+          this.putApi(json);
+        }else{
+          alert('No Changes Have Been Made!');
+        }
       }else{
-        alert('No Changes Have Been Made!');
+        // OTHERWISE POST A NEW SET
+        this.postApi(json);
       }
     }else{
-      // OTHERWISE POST A NEW SET
-      this.postApi(json);
+      // Replace with modals or specific UI error components
+      alert('all forms must be filled completely');
     }
   }
 

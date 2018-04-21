@@ -15,6 +15,7 @@ class VenueInfo extends Component {
               placeholder="Venue Name"
               onChange={(e)=>handleChange(e, 'location','venue')}
               value={venue && venue}
+              required
             />
             <input
               type="text"
@@ -22,6 +23,7 @@ class VenueInfo extends Component {
               autoComplete='address-line1'
               onChange={(e)=>handleChange(e, 'location','address','address_line')}
               value={address_line && address_line}
+              required
             />
             <input
               type="text"
@@ -29,6 +31,7 @@ class VenueInfo extends Component {
               placeholder="City"
               onChange={(e)=>handleChange(e, 'location','address','city')}
               value={city && city}
+              required
             />
              <input
                type="text"
@@ -36,6 +39,7 @@ class VenueInfo extends Component {
                placeholder="State"
                onChange={(e)=>handleChange(e, 'location','address','state')}
                value={state && state}
+               required
              />
              <input
                type="text"
@@ -43,6 +47,7 @@ class VenueInfo extends Component {
                placeholder="Country"
                onChange={(e)=>handleChange(e, 'location','address','country')}
                value={country && country}
+               required
              />
              <input
                type="text"
@@ -50,6 +55,7 @@ class VenueInfo extends Component {
                placeholder="Postal Code"
                onChange={(e)=>handleChange(e, 'location','address','postal_code')}
                value={postal_code && postal_code}
+               required
              />
           </div>
     );

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import TrackList from './TrackList';
 import VenueInfo from './VenueInfo';
 import validate from '../helpers/validate';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import './DayPickerStyles.css';
+import format from 'date-fns/format';
+import parse from 'date-fns/parse';
+
 const slugify = require('slugify');
 
 const INIT_STATE = {
@@ -56,6 +61,13 @@ class Edit extends Component {
    return body;
  };
 
+ handleDayClick = (day) => {
+  const json = {...this.state.json};
+  json.date = day.toString();
+  console.log(day);
+  this.setState({json});
+ }
+
   componentDidMount(){
       if(this.props.route.path !== '/add-set'){
         this.callApi()
@@ -100,13 +112,12 @@ class Edit extends Component {
     e.preventDefault();
     const json = {...this.state.json};
     json.username = this.props.currentUser;
-    let date = new Date().toLocaleDateString('en-US');
-    const string = `${date} ${this.props.currentUser} ${json.location.venue}`;
+    const dateString = json.date.split(' ');
+    const string = `${dateString[0]} ${dateString[2]} ${dateString[3]} ${this.props.currentUser} ${json.location.venue}`;
     const slug = slugify(string);
     console.log(slug)
     console.log(typeof date);
     json.slug = slug;
-    json.date = date;
     if(validate(json)){
       // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN PUT
       if(this.props.route.path !== '/add-set'){
@@ -252,6 +263,7 @@ class Edit extends Component {
   }
 
   render() {
+    const FORMAT = 'M/D/YYYY';
     return (
       <div>
         {this.props.route.path !== '/add-set' ?
@@ -259,6 +271,14 @@ class Edit extends Component {
           <h1>Create A Set List</h1>
         }
         <form>
+          <DayPickerInput
+            formatDate={format}
+            format={FORMAT}
+            parseDate={parse}
+            placeholder={`${format(new Date(), FORMAT)}`}
+            onDayChange ={this.handleDayClick}
+            selectedDays={this.state.json.date}
+          />
           {
             this.state.json.location &&
                <VenueInfo

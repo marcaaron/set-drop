@@ -113,7 +113,7 @@ class App extends Component {
           />
           <Route
             exact path={routes.SET}
-            component={({match}) => <Set handleSelectedSetID={this.handleSelectedSetID} slug={match.params} sets={sets}/>}
+            component={({match}) => <Set currentUser={currentUser} handleSelectedSetID={this.handleSelectedSetID} slug={match.params} sets={sets}/>}
           />
           <Route
             exact path={routes.USER_SETS}

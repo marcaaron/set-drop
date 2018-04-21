@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import TrackList from './TrackList';
 import VenueInfo from './VenueInfo';
 import validate from '../helpers/validate';

@@ -7,7 +7,7 @@ class Set extends Component {
   }
 
   render() {
-    const {sets} = this.props;
+    const {sets, currentUser} = this.props;
     let set, address;
     const slug = this.props.slug.slug;
     set = sets.find( set => set.slug===slug);
@@ -40,7 +40,10 @@ class Set extends Component {
                       }
 
                     </ul>
-                    <Link onClick={()=>this.props.handleSelectedSetID(set._id)}to={`/edit/${set.slug}`}><button>Edit</button></Link>
+                    {
+                      set.username === currentUser &&
+                      <Link onClick={()=>this.props.handleSelectedSetID(set._id)}to={`/edit/${set.slug}`}><button>Edit</button></Link>
+                    }
                   </div>
             }
         </div>

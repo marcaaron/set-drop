@@ -23,7 +23,6 @@ router.route('/').get(function (req, res) {
       console.log(err);
     }
     else {
-      console.log(res);
       return res.json(setlists);
     }
   });

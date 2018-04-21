@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SignOut from './SignOut';
-import { db } from '../firebase';
 
 class Home extends Component {
   render() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Track from './Track';
-const uuidv1 = require('uuid/v1');
 
 class TrackList extends Component {
   render() {

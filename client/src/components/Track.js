@@ -23,7 +23,6 @@ class Track extends Component {
               placeholder="Genre"
               value={genre && genre}
             />
-            <div>{index}</div>
             <button onClick={(e)=>addListItem(e,index+1)}>Add Track</button>
             {list.length > 1 && <button onClick={(e)=>removeListItem(e,index)}>Remove Track</button>}
           </div>

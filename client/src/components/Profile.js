@@ -228,7 +228,7 @@ class Profile extends Component {
         <ul>
           {user.following.length>0 ?
             user.following.map((user,index)=>{
-              <li>{user}</li>
+              return <li>{user}</li>
             })
             :
             <li>List empty</li>

@@ -20,3 +20,18 @@
   flex-direction: column;
   width:320px;
 }
+
+.rekordbox-dropbox{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border:dotted 3px grey;
+}
+.rekordbox-dropbox-text{
+  padding-top:2em;
+}
+
+.rekordbox-logo{
+  padding:1em;
+}

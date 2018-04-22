@@ -106,7 +106,23 @@ class Edit extends Component {
      }
    };
 
-
+  handleFileDrop = (data) => {
+    const json = {...this.state.json};
+    const tracks = data.map(track=>{
+      const trackObj = {
+        artist: {
+          name:track.artist
+        },
+        title:{
+          name: track.title
+        },
+        genre: track.genre
+      }
+      return trackObj;
+    });
+    json.list = [...tracks];
+    this.setState({json});
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -270,7 +286,7 @@ class Edit extends Component {
           <h1>Edit Existing Set List</h1> :
           <h1>Create A Set List</h1>
         }
-        <RekordboxParser/>
+        <RekordboxParser handleFileDrop={this.handleFileDrop}/>
         <form>
           <DayPickerInput
             formatDate={format}

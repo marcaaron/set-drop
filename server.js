@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const config = require('./db');
 const SetList = require('./models/SetList');
 const SetListRoute = require('./routes/SetListRoute');
+const UsersRoute = require('./routes/UsersRoute');
+const User = require('./models/User');
+
 const cors = require('cors');
 
 // Serve React Front-End to Root
@@ -25,6 +28,7 @@ mongoose.connect(config.db).then(
 // Set Up API Post Route for Individual Set Lists
 app.use(bodyParser.json());
 app.use('/api/setlists', SetListRoute);
+app.use('/api/users', UsersRoute);
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

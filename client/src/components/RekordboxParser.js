@@ -11,31 +11,29 @@ class RekordboxParser extends Component {
   }
 
   dragenter = (e) => {
-    const dropbox = document.getElementById("dropbox");
     e.stopPropagation();
     e.preventDefault();
-    dropbox.style.border = 'solid black 5px';
+    const style = {border:'solid black 5px'};
+    this.setState({style});
   }
 
   dragover = (e) => {
-    const dropbox = document.getElementById("dropbox");
     e.stopPropagation();
     e.preventDefault();
-    // dropbox.style.border = 'solid black 5px';
+    const style = {border:'solid black 5px'};
+    this.setState({style});
   }
 
   dragleave = (e) => {
-    const dropbox = document.getElementById("dropbox");
     e.stopPropagation();
     e.preventDefault();
-    dropbox.style.border = '';
+    const style = {};
+    this.setState({style});
   }
 
   drop = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    const dropbox = document.getElementById("dropbox");
-    dropbox.style.border = '2px solid red';
     e.dataTransfer.dropEffect = 'copy';
     const file = e.dataTransfer.files[0];
     const reader = new FileReader();
@@ -43,20 +41,21 @@ class RekordboxParser extends Component {
       const tracks = rekordboxParse(reader.result);
       this.props.handleFileDrop(tracks);
       const dropSuccess = true;
-      this.setState({dropSuccess});
+      const style = {border:'2px solid red'};
+      this.setState({dropSuccess, style});
     }
     reader.readAsText(file, 'UTF-8');
   }
 
   render() {
-    const {dropSuccess} = this.state;
+    const {dropSuccess, style} = this.state;
     return (
-      <div onDragOver={this.dragover} onDragLeave={this.dragleave} onDragExit={this.dragexit} onDragEnd={this.dragend} onDragEnter={this.dragenter} onDrop={this.drop} id="dropbox" className="rekordbox-dropbox">
+      <div style={style} onDragOver={this.dragover} onDragLeave={this.dragleave} onDragExit={this.dragexit} onDragEnd={this.dragend} onDragEnter={this.dragenter} onDrop={this.drop} id="dropbox" className="rekordbox-dropbox">
         <span className="rekordbox-dropbox-text">
           {!dropSuccess ? 'Drop your rekordbox set history text file here...' : 'File Successfully Parsed!'}
 
         </span>
-        <img className="rekordbox-logo" width={150} src={rekordboxSVG}/>
+        <img alt="Pioneer rekordbox Logo" className="rekordbox-logo" width={150} src={rekordboxSVG}/>
       </div>
     );
   }

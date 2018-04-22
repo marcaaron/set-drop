@@ -85,6 +85,10 @@ class Edit extends Component {
       }
   }
 
+  componentDidUpdate(){
+    console.log(this.state);
+  }
+
    putApi = async (data) => {
      const headers = new Headers();
      headers.append("Content-Type", "application/json");

@@ -44,8 +44,36 @@ class SignUpForm extends Component {
         console.log(error);
         this.setState({error});
       });
+      const user = {
+        username:username
+      }
+      this.postApi(user);
+
     e.preventDefault();
   }
+
+  postApi = async (data) => {
+    console.log(JSON.stringify(data));
+
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    const options = {
+      method:"POST", headers:headers, body: JSON.stringify(data)
+    }
+    // Change API endpoint back to /api/setlists for deployment
+    // const response = await fetch('/api/users/add', options);
+
+    const response = await fetch('http://localhost:5000/api/users/add',
+    options);
+    const body = await response.json();
+
+    if (response.status !== 200){
+      throw Error(body.message);
+    } else {
+      return body;
+    }
+  };
+
 
   handleChange = (e, propName) => {
     this.setState({[propName]:e.target.value});

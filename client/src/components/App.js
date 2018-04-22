@@ -10,7 +10,7 @@ import Landing from './Landing';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 import Edit from './Edit';
-
+import Profile from './Profile';
 import Set from './Set';
 import UserSets from './UserSets';
 import Sets from './Sets';
@@ -110,6 +110,10 @@ class App extends Component {
           <Route
             exact path={routes.LOG_IN}
             component={() => <LogIn />}
+          />
+          <Route
+            exact path={routes.PROFILE}
+            component={({match}) => <Profile username={match.params} currentUser={currentUser}/>}
           />
           <Route
             exact path={routes.SET}

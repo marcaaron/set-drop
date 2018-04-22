@@ -28,9 +28,9 @@ router.route('/').get(function (req, res) {
   });
 });
 
-//GET A USER BY ID
-router.route('/:id').get(function (req, res) {
-  User.findById(req.params.id, function (err, users)
+//GET A USER BY USERNAME
+router.route('/:username').get(function (req, res) {
+  User.find({username:`${req.params.username}`}, function (err, users)
   {
     if(err){
       console.log(err);
@@ -59,6 +59,5 @@ router.route('/delete/:id').get(function (req, res) {
           else res.json('Successfully removed');
       });
 });
-
 
 module.exports = router;

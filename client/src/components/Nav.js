@@ -13,6 +13,7 @@ const NavAuth = ({currentUser}) =>
     <li><Link to={routes.HOME}>Home</Link></li>
     <li><Link to={routes.ADD}>Add Set</Link></li>
     <li><Link to={routes.SETS}>Browse Sets</Link></li>
+    <li><Link to={`/users/${currentUser}`}>My Profile</Link></li>
     <li><Link to={`/sets/${currentUser}`}>My Sets</Link></li>
     <li><SignOutButton /></li>
   </ul>

@@ -6,7 +6,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import './DayPickerStyles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
-
+import RekordboxParser from './RekordboxParser';
 const slugify = require('slugify');
 
 const INIT_STATE = {
@@ -270,6 +270,7 @@ class Edit extends Component {
           <h1>Edit Existing Set List</h1> :
           <h1>Create A Set List</h1>
         }
+        <RekordboxParser/>
         <form>
           <DayPickerInput
             formatDate={format}

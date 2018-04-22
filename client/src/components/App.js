@@ -36,6 +36,7 @@ class App extends Component {
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
+      console.log('hold my shirt');
       if(authUser){
         console.log('user is authorized');
         db.onceGetUsers().then(snapshot =>{

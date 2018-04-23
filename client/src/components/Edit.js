@@ -7,6 +7,7 @@ import './DayPickerStyles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import RekordboxParser from './RekordboxParser';
+
 const slugify = require('slugify');
 
 const INIT_STATE = {
@@ -64,7 +65,6 @@ class Edit extends Component {
  handleDayClick = (day) => {
   const json = {...this.state.json};
   json.date = day.toString();
-  console.log(day);
   this.setState({json});
  }
 
@@ -131,8 +131,6 @@ class Edit extends Component {
     const dateString = json.date.split(' ');
     const string = `${dateString[0]} ${dateString[2]} ${dateString[3]} ${this.props.currentUser} ${json.location.venue}`;
     const slug = slugify(string);
-    console.log(slug)
-    console.log(typeof date);
     json.slug = slug;
     if(validate(json)){
       // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN PUT
@@ -153,7 +151,6 @@ class Edit extends Component {
   }
 
   postApi = async (data) => {
-    console.log(JSON.stringify(data));
 
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -278,6 +275,17 @@ class Edit extends Component {
     this.setState({json});
   }
 
+  clearListItem = (e, index) => {
+    e.preventDefault();
+    let json = {...this.state.json};
+    let list = [...json.list];
+    list[index].artist.name='';
+    list[index].title.name='';
+    list[index].genre = '';
+    json.list = list;
+    this.setState({json});
+  }
+
   render() {
     const FORMAT = 'M/D/YYYY';
     return (
@@ -309,6 +317,7 @@ class Edit extends Component {
               handleListChange={this.handleListChange}
               addListItem={this.addListItem}
               removeListItem={this.removeListItem}
+              clearListItem={this.clearListItem}
             />
           }
           {this.props.route.path !== '/add-set' ?

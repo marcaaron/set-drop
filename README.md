@@ -7,7 +7,7 @@ Fan users can follow performers and navigate by clicking on a venue name to retr
 
 **Client-side:**
 - React
-- SASS
+- SCSS
 - React Router
 - Firebase (for user authentication)
 

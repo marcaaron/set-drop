@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/fontawesome-free-solid": "^5.0.10",
+    "@fortawesome/react-fontawesome": "0.0.18",
     "ajv": "^6.4.0",
     "firebase": "^4.12.1",
     "react": "^16.3.1",
@@ -20,7 +23,7 @@
     "build": "yarn sass:build && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass" : "sass --watch src/styles/scss:src/styles/css",
-    "sass:build" : "sass - update src/styles/scss:src/styles/css"
+    "sass": "sass --watch src/styles/scss:src/styles/css",
+    "sass:build": "sass - update src/styles/scss:src/styles/css"
   }
 }

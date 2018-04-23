@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
+import faMinusCircle from '@fortawesome/fontawesome-free-solid/faMinusCircle';
+import faTimesCircle from '@fortawesome/fontawesome-free-solid/faTimesCircle';
 
 class Track extends Component {
   render() {
-    const {handleChange, addListItem, removeListItem, list, index, title, artist, genre} = this.props;
+    const {handleChange, clearListItem, addListItem, removeListItem, list, index, title, artist, genre} = this.props;
     return (
           <div className="track-box">
             <input
@@ -23,8 +27,23 @@ class Track extends Component {
               placeholder="Genre"
               value={genre && genre}
             />
-            <button onClick={(e)=>addListItem(e,index+1)}>Add Track</button>
-            {list.length > 1 && <button onClick={(e)=>removeListItem(e,index)}>Remove Track</button>}
+            <FontAwesomeIcon
+              onClick={(e)=>clearListItem(e,index)}
+              icon={faTimesCircle}
+              size="2x"
+            />
+            <FontAwesomeIcon
+              onClick={(e)=>addListItem(e,index+1)}
+              icon={faPlusCircle}
+              size="2x"
+            />
+            {list.length > 1 &&
+              <FontAwesomeIcon
+                onClick={(e)=>removeListItem(e,index)}
+                icon={faMinusCircle}
+                size="2x"
+              />
+            }
           </div>
     );
   }

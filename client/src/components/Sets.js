@@ -12,7 +12,7 @@ class Sets extends Component {
     const {sets} = this.props;
     return (
       <div>
-        <h1>Browse Sets</h1>
+        <h1>Recent Sets From All Users</h1>
           <div className="set-container">
             {
               sets && sets.map(set =>

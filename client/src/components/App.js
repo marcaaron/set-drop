@@ -12,6 +12,7 @@ import LogIn from './LogIn';
 import Edit from './Edit';
 import Profile from './Profile';
 import Set from './Set';
+import Stream from './Stream';
 import UserSets from './UserSets';
 import Sets from './Sets';
 import UserList from './UserList';
@@ -127,6 +128,10 @@ class App extends Component {
           <Route
             exact path={routes.USER_SETS}
             component={({match}) => <UserSets username={match.params}/>}
+          />
+          <Route
+            exact path={routes.STREAM}
+            component={() => <Stream sets={sets} currentUser={currentUser}/>}
           />
           <Route
             exact path={routes.HOME}

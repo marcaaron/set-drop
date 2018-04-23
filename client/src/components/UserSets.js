@@ -29,6 +29,7 @@ class UserSets extends Component {
   componentDidUpdate(){
     if(this.state.username !== this.props.username.username){
       this.updateSets();
+      console.log('updating sets');
     }
     console.log(this.props.username.username);
   }
@@ -55,7 +56,7 @@ class UserSets extends Component {
         <h1>{`${username[username.length-1]==='s' ? username+"'" : username+"'s" }`} Sets</h1>
           <div className="set-container">
             {
-              sets && sets.map(set =>
+              sets && sets.length>0 && sets.map(set =>
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
                   <div className="set-item">
                     <div className="date">{set.date}</div>
@@ -65,6 +66,14 @@ class UserSets extends Component {
                   </div>
                 </Link>
             )}
+            {
+              sets && sets.length===0 &&
+                <div>
+                  <Link to={`/add-set/`}>
+                    Click Here to Create Your First Set
+                  </Link>
+                </div>
+            }
         </div>
       </div>
     );

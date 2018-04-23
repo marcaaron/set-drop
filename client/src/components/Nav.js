@@ -11,11 +11,12 @@ const Nav = ({authUser, currentUser}) =>
 const NavAuth = ({currentUser}) =>
   <ul className="nav">
     <li><Link to={routes.HOME}>Home</Link></li>
+    <li><Link to={routes.STREAM}>My Stream</Link></li>
     <li><Link to={routes.ADD}>Add Set</Link></li>
-    <li><Link to={routes.SETS}>Browse Sets</Link></li>
+    <li><Link to={routes.SETS}>Browse All Sets</Link></li>
     <li><Link to={routes.USER_LIST}>User List</Link></li>
-    <li><Link to={`/users/${currentUser}`}>My Profile</Link></li>
-    <li><Link to={`/sets/${currentUser}`}>My Sets</Link></li>
+    <li><Link to={`/users/${currentUser}`}>Your Profile</Link></li>
+    <li><Link to={`/sets/${currentUser}`}>Your Sets</Link></li>
     <li><SignOutButton /></li>
   </ul>
 

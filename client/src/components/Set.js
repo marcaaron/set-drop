@@ -6,6 +6,37 @@ class Set extends Component {
     console.log('set component did mount');
   }
 
+  deleteSet = (id) => {
+    const message = 'Are you sure you want to delete this set?\nThis action can not be undone!';
+    let confirm = window.confirm(message);
+    if(confirm){
+      this.callDelete(id);
+    }else{
+      return;
+    }
+  }
+
+  callDelete = async (id) => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+
+    // Change API endpoint back to /api/setlists for deployment
+    // const response = await fetch('/api/setlists', headers);
+
+    const response = await fetch(`http://localhost:5000/api/setlists/delete/${id}`, headers);
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      console.log('problem with response');
+      throw Error(body.message);
+    }else{
+      console.log('sets updated');
+      return body;
+    }
+  };
+
+
   render() {
     const {sets, currentUser} = this.props;
     let set, address;
@@ -42,7 +73,12 @@ class Set extends Component {
                     </ul>
                     {
                       set.username === currentUser &&
-                      <Link onClick={()=>this.props.handleSelectedSetID(set._id)}to={`/edit/${set.slug}`}><button>Edit</button></Link>
+                      <div className="user-edit-controls">
+                        <Link onClick={()=>this.props.handleSelectedSetID(set._id)}to={`/edit/${set.slug}`}>
+                          <button>Edit</button>
+                        </Link>
+                        <button onClick={()=>this.deleteSet(set._id)}>Delete</button>
+                      </div>
                     }
                   </div>
             }

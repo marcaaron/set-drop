@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+const uuidv1 = require('uuid/v1');
 
 class Profile extends Component {
   constructor(props){
@@ -20,12 +22,24 @@ class Profile extends Component {
         },
         following:[]
       },
-      edit: false
+      edit: false,
+      userInUrl:''
     }
   }
 
   componentDidMount(){
     this.updateUser();
+    const userInUrl = this.props.username.username;
+    this.setState({userInUrl});
+  }
+
+  componentDidUpdate(){
+    if(this.props.username.username !== this.state.userInUrl){
+      const userInUrl = this.props.username.username;
+      this.updateUser();
+      this.setState({userInUrl});
+      console.log(this.props.username.username);
+    }
   }
 
   updateUser = () =>{
@@ -129,7 +143,7 @@ class Profile extends Component {
     return (
       <div>
         <h1>Profile</h1>
-        {/* <img src={`data:image/jpeg;base64, ${user.avatar}`}/> */}
+        <img alt={`Avatar of ${user.username}`} src={user.avatar}/>
         <div>Username: {user.username}</div>
 
         <div>Description:
@@ -228,7 +242,7 @@ class Profile extends Component {
         <ul>
           {user.following.length>0 ?
             user.following.map((user,index)=>{
-              return <li>{user}</li>
+              return <Link key={`${user}_${index}_${uuidv1()}`} to={`/users/${user}/`}><li>{user}</li></Link>
             })
             :
             <li>List empty</li>

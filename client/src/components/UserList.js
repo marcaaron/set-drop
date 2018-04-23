@@ -117,8 +117,8 @@ class UserList extends Component {
         {users.map((user,index)=>{
           if(this.props.currentUser !== user.username){
             return (
-              <div className="user-item">
-                <Link key={`link_${user.username}_${index}`} to={`/users/${user.username}`}>
+              <div key={`link_${user.username}_${index}`} className="user-item">
+                <Link to={`/users/${user.username}`}>
                   <div>{user.username}</div>
                 </Link>
                 {currentUser && currentUser.following && currentUser.following.includes(user.username) ?

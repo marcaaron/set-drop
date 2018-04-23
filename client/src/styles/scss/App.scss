@@ -1,3 +1,11 @@
+$font-stack: 'Source Sans Pro', sans-serif;
+
+body{
+  margin: 0;
+  padding: 0;
+  font: 100% $font-stack;
+}
+
 .sign-up-form{
   display:flex;
   flex-direction: column;

@@ -1,5 +1,5 @@
 // Styles
-import './App.css';
+import '../styles/css/App.css';
 
 // Components
 import React, { Component } from 'react';

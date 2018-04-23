@@ -38,7 +38,6 @@ class Profile extends Component {
       const userInUrl = this.props.username.username;
       this.updateUser();
       this.setState({userInUrl});
-      console.log(this.props.username.username);
     }
   }
 

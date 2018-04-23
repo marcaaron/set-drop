@@ -1,9 +1,19 @@
 $font-stack: 'Source Sans Pro', sans-serif;
+$primary-color: #191919;
+$secondary-color: #D05353;
+$tertiary-color: #E58F65;
+$quaternary-color: #F9E784;
 
 body{
   margin: 0;
   padding: 0;
   font: 100% $font-stack;
+  color: $primary-color;
+  background-color: $quaternary-color;
+}
+
+a{
+  color:$secondary-color;
 }
 
 .sign-up-form{
@@ -47,11 +57,11 @@ body{
 .user-list{
   display:flex;
   flex-direction: column;
-}
-.user-item{
-  display:flex;
-  padding:1em;
-}
-.follow-button{
-  margin:0 1em;
+  .user-item{
+    display:flex;
+    padding:1em;
+    .follow-button{
+      margin:0 1em;
+    }
+  }
 }

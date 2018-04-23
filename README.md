@@ -6,8 +6,9 @@ Socially driven single page app that allows DJs to publish their "set lists" fro
 Fan users can follow performers and navigate by clicking on a venue name to retrieve sets performed at that venue or on an artist / song title to find other "sets" where those criteria appear.
 
 **Client-side:**
- - React
- - React Router
+- React
+- SASS
+- React Router
 - Firebase (for user authentication)
 
 **Server-side:**

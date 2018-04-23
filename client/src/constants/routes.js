@@ -10,3 +10,4 @@ export const ADD = '/add-set';
 export const USER_SETS = '/sets/:username';
 export const EDIT = '/edit/:slug';
 export const PROFILE = '/users/:username';
+export const USER_LIST = '/users/';

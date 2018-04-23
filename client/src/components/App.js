@@ -14,6 +14,7 @@ import Profile from './Profile';
 import Set from './Set';
 import UserSets from './UserSets';
 import Sets from './Sets';
+import UserList from './UserList';
 import Home from './Home';
 import Account from './Account';
 import { firebase } from '../firebase';
@@ -94,6 +95,10 @@ class App extends Component {
           <Route
             exact path={routes.LANDING}
             component={() => <Landing />}
+          />
+          <Route
+            exact path={routes.USER_LIST}
+            component={() => <UserList currentUser={currentUser} />}
           />
           <Route
             exact path={routes.ADD}

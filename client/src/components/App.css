@@ -35,3 +35,15 @@
 .rekordbox-logo{
   padding:1em;
 }
+
+.user-list{
+  display:flex;
+  flex-direction: column;
+}
+.user-item{
+  display:flex;
+  padding:1em;
+}
+.follow-button{
+  margin:0 1em;
+}

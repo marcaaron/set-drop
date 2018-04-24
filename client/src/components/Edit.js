@@ -7,6 +7,7 @@ import './DayPickerStyles.css';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import RekordboxParser from './RekordboxParser';
+import Autocomplete from './Autocomplete';
 
 const slugify = require('slugify');
 
@@ -176,7 +177,8 @@ class Edit extends Component {
           location:{
             venue: '',
             address: {
-              address_line: '',
+              street_number: '',
+              street: '',
               city: '',
               state: '',
               country: '',
@@ -185,7 +187,10 @@ class Edit extends Component {
             coords: {
               lng: '',
               lat: ''
-            }
+            },
+            phone:'',
+            website:'',
+            placeId:''
           },
           list: [{
             artist:{
@@ -286,6 +291,12 @@ class Edit extends Component {
     this.setState({json});
   }
 
+  populateFromAutocomplete = (location) => {
+    let json = {...this.state.json};
+    json.location = location;
+    this.setState({json});
+  }
+
   render() {
     const FORMAT = 'M/D/YYYY';
     return (
@@ -304,6 +315,7 @@ class Edit extends Component {
             onDayChange ={this.handleDayClick}
             selectedDays={this.state.json.date}
           />
+          <Autocomplete populate={this.populateFromAutocomplete}/>
           {
             this.state.json.location &&
                <VenueInfo

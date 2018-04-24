@@ -9,7 +9,8 @@ const SetListSchema = new Schema(
     location: {
       venue: String,
       address: {
-        address_line: String,
+        street_number: Number,
+        street: String,
         city: String,
         state: String,
         country: String,
@@ -18,7 +19,10 @@ const SetListSchema = new Schema(
       coords: {
         lng: Number,
         lat: Number
-      }
+      },
+      website:String,
+      phone:String,
+      placeId: String
     },
     list: [
       {

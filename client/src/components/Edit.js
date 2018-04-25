@@ -41,7 +41,7 @@ const INIT_STATE = {
     }],
     slug:''
   },
-  oldJson:{}
+  oldJson:''
 };
 
 class Edit extends Component {
@@ -74,7 +74,7 @@ class Edit extends Component {
       if(this.props.route.path !== '/add-set'){
         this.callApi()
           .then(res => {
-            const oldJson = {...res};
+            const oldJson = JSON.stringify(res);
             const json = {...res};
             this.setState({json, oldJson});
           })
@@ -214,7 +214,7 @@ class Edit extends Component {
   };
 
   hasChanged = (json) => {
-    if(JSON.stringify(this.state.oldJson)!==JSON.stringify(json)){
+    if(this.state.oldJson !== JSON.stringify(json)){
       return true;
     }else{
       return false;
@@ -225,7 +225,7 @@ class Edit extends Component {
     const value = e.target.value;
     let json = {...this.state.json};
     let objectToMutate = {...json[object]};
-
+    console.log('venue info change has taken place');
     if(args.length===0){
       objectToMutate[prop] = value;
     }else{
@@ -236,9 +236,11 @@ class Edit extends Component {
     }
     json[object] = objectToMutate;
     this.setState({json})
+    console.log(JSON.stringify(json)===JSON.stringify(this.state.oldJson));
   }
 
   handleListChange = (e, prop, index, ...args) => {
+    console.log('change has taken place');
     const value = e.target.value;
     let json = {...this.state.json};
     let list = [...json.list];
@@ -254,6 +256,7 @@ class Edit extends Component {
     list[index] = listObject;
     json.list = list;
     this.setState({json});
+    console.log(JSON.stringify(json)===JSON.stringify(this.state.oldJson));
   }
 
   addListItem = (e, index) => {

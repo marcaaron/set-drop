@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class VenueInfo extends Component {
   render() {
-    const {handleChange} = this.props;
+    const {handleChange, err} = this.props;
     const {location} = this.props.json;
     const {street_number, street, city, state, country, postal_code} = location.address;
     const {venue, phone, website} = location;
@@ -17,6 +17,7 @@ class VenueInfo extends Component {
               value={venue && venue}
               required
             />
+            {err.venue && <div style={{color:'red'}}>{err.venue}</div>}
             <input
               type="text"
               placeholder="Street Number"
@@ -24,6 +25,8 @@ class VenueInfo extends Component {
               value={street_number && street_number}
               required
             />
+            {err.street_number && <div style={{color:'red'}}>{err.street_number}</div>}
+
             <input
               type="text"
               placeholder="Street"
@@ -31,6 +34,8 @@ class VenueInfo extends Component {
               value={street && street}
               required
             />
+            {err.street && <div style={{color:'red'}}>{err.street}</div>}
+
             <input
               type="text"
               placeholder="City"
@@ -38,6 +43,8 @@ class VenueInfo extends Component {
               value={city && city}
               required
             />
+            {err.city && <div style={{color:'red'}}>{err.city}</div>}
+
              <input
                type="text"
                placeholder="State"
@@ -45,6 +52,8 @@ class VenueInfo extends Component {
                value={state && state}
                required
              />
+             {err.state && <div style={{color:'red'}}>{err.state}</div>}
+
              <input
                type="text"
                placeholder="Country"
@@ -52,6 +61,8 @@ class VenueInfo extends Component {
                value={country && country}
                required
              />
+             {err.country && <div style={{color:'red'}}>{err.country}</div>}
+
              <input
                type="text"
                placeholder="Postal Code"
@@ -59,6 +70,8 @@ class VenueInfo extends Component {
                value={postal_code && postal_code}
                required
              />
+             {err.postal_code && <div style={{color:'red'}}>{err.postal_code}</div>}
+
              <input
                type="text"
                placeholder="Phone"

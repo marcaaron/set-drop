@@ -6,7 +6,7 @@ import faTimesCircle from '@fortawesome/fontawesome-free-solid/faTimesCircle';
 
 class Track extends Component {
   render() {
-    const {handleChange, clearListItem, addListItem, removeListItem, list, index, title, artist, genre} = this.props;
+    const {err, handleChange, clearListItem, addListItem, removeListItem, list, index, title, artist, genre} = this.props;
     return (
           <div className="track-box">
             <input
@@ -15,12 +15,14 @@ class Track extends Component {
               placeholder="Artist"
               value={artist && artist}
             />
+            {err & err.listItem && err.listItem[index] && err.listItem[index].field==='artist' && <div>{err.listItem[index].message}</div>}
             <input
               onChange={(e)=>handleChange(e, 'title', index, 'name')}
               type="text"
               placeholder="Title"
               value={title && title}
             />
+            {err & err.listItem && err.listItem[index] && err.listItem[index].field==='artist' && <div>{err.listItem[index].message}</div>}
             <input
               onChange={(e)=>handleChange(e, 'genre', index)}
               type="text"

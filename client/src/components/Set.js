@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
+import format from 'date-fns/format';
+const FORMAT = 'M/D/YYYY';
 
 class Set extends Component {
   componentDidMount(){
@@ -54,7 +56,7 @@ class Set extends Component {
             {
               set && address &&
                   <div key={`keyFor_${set.slug}`} className="set-item">
-                    <div className="date">{set.date}</div>
+                    <div className="date">{format(set.date, FORMAT)}</div>
                     <div className="venue">{set.location.venue}</div>
                     <div className="address">{address.address_line}</div>
                     <div className="city-state">{address.city}, {address.state} {address.postal_code}</div>

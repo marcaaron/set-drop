@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import format from 'date-fns/format';
+const FORMAT = 'M/D/YYYY';
 const uuidv1 = require('uuid/v1');
 
 class UserSets extends Component {
@@ -59,7 +61,7 @@ class UserSets extends Component {
               sets && sets.length>0 && sets.map(set =>
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
                   <div className="set-item">
-                    <div className="date">{set.date}</div>
+                    <div className="date">{format(set.date, FORMAT)}</div>
                     <div className="venue">{set.location.venue}</div>
                     <div className="city-state">{set.location.address.city}, {set.location.address.state}</div>
                     <div className="user">–posted by {set.username}</div>

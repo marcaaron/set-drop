@@ -11,11 +11,10 @@ import Autocomplete from './Autocomplete';
 import { withRouter } from 'react-router'
 
 const slugify = require('slugify');
-
 const INIT_STATE = {
   json:{
     username: null,
-    date:'',
+    date:new Date(),
     location:{
       venue: '',
       address: {
@@ -41,7 +40,8 @@ const INIT_STATE = {
     }],
     slug:''
   },
-  oldJson:''
+  oldJson:'',
+  err:{}
 };
 
 class Edit extends Component {
@@ -130,13 +130,23 @@ class Edit extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const json = {...this.state.json};
+    const FORMAT = 'M/D/YYYY';
     json.username = this.props.currentUser;
-    const dateString = json.date.split(' ');
-    const string = `${dateString[0]} ${dateString[2]} ${dateString[3]} ${this.props.currentUser} ${json.location.venue}`;
+    const dateString = format(json.date, FORMAT).split('/').join('-');
+    const string = `${dateString} ${this.props.currentUser} ${json.location.venue}`;
     const slug = slugify(string);
     json.slug = slug;
+    // PASS THROUGH VALIDATOR TO CHECK FOR ERROR OBJECT RETURNED
     if(validate(json)){
-      // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN PUT
+      // RETURN ERR OBJECT FROM VALIDATE FUNCTION AND SET STATE
+      alert('Please Fix Errors');
+      const err = validate(json);
+      this.setState({err});
+    }else{
+      // CLEAR ANY ERRORS SINCE NONE EXIST
+      const err = {};
+      this.setState({err});
+      // IF WE ARE IN EDIT MODE CHECK FOR CHANGES THEN ALLOW PUT REQ
       if(this.props.route.path !== '/add-set'){
         if(this.hasChanged(json)){
           this.putApi(json);
@@ -144,12 +154,9 @@ class Edit extends Component {
           alert('No Changes Have Been Made!');
         }
       }else{
-        // OTHERWISE POST A NEW SET
+        // OTHERWISE PERMIT THE CREATION OF A NEW SET
         this.postApi(json);
       }
-    }else{
-      // Replace with modals or specific UI error components
-      alert('all forms must be filled completely');
     }
   }
 
@@ -325,12 +332,14 @@ class Edit extends Component {
           {
             this.state.json.location &&
                <VenueInfo
+                 err={this.state.err}
                  json={this.state.json}
                  handleChange={this.handleChange}
                />
           }
           { this.state.json.list &&
             <TrackList
+              err={this.state.err}
               json={this.state.json}
               handleListChange={this.handleListChange}
               addListItem={this.addListItem}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-
+import PlacesAutocomplete from 'react-places-autocomplete';
+import googleLogo from './powered_by_google_on_non_white_hdpi.png';
 class Autocomplete extends Component {
   constructor(props){
     super(props);
@@ -108,14 +108,15 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const searchOptions = {
-      types: ['establishment', 'art_gallery', 'bar', 'cafe','clothing_store', 'store','stadium','restaurant','park','night_club','museum']
-    };
+    // const searchOptions = {
+    //   types: ['establishment']
+    // };
     return (
       <PlacesAutocomplete
         value={this.state.address}
         onChange={this.handleAddressChange}
         onSelect={this.handleSelect}
+        // searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <div>
@@ -138,6 +139,7 @@ class Autocomplete extends Component {
                   </div>
                 )
               })}
+              <img className="google-logo" alt="Google Logo" src={googleLogo}/>
             </div>
           </div>
         )}

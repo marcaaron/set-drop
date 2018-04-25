@@ -8,6 +8,10 @@ body {
 a {
   color: #D05353; }
 
+.google-logo {
+  width: 8em;
+  margin-top: 0.5em; }
+
 .sign-up-form {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 class Set extends Component {
   componentDidMount(){
@@ -31,6 +32,7 @@ class Set extends Component {
       console.log('problem with response');
       throw Error(body.message);
     }else{
+      this.props.history.push(`/sets/${this.props.currentUser}`);
       console.log('sets updated');
       return body;
     }
@@ -88,4 +90,4 @@ class Set extends Component {
   }
 }
 
-export default Set;
+export default withRouter(Set);

@@ -8,6 +8,7 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import RekordboxParser from './RekordboxParser';
 import Autocomplete from './Autocomplete';
+import { withRouter } from 'react-router'
 
 const slugify = require('slugify');
 
@@ -102,6 +103,7 @@ class Edit extends Component {
      if (response.status !== 200){
        throw Error(body.message);
      } else {
+       this.props.history.push(`/sets/${this.props.currentUser}`);
        this.props.updateSets();
        return body;
      }
@@ -206,6 +208,7 @@ class Edit extends Component {
         oldJson:{}
       };
       this.setState(state);
+      this.props.history.push(`/sets/${this.props.currentUser}`);
       return body;
     }
   };
@@ -342,4 +345,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default withRouter(Edit);

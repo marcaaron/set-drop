@@ -6,11 +6,6 @@ const FORMAT = 'M/D/YYYY';
 const uuidv1 = require('uuid/v1');
 
 class Sets extends Component {
-
-  componentDidUpdate(){
-    this.props.updateSets();
-  }
-
   render() {
     const {sets} = this.props;
     return (

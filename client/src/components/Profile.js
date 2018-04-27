@@ -28,12 +28,15 @@ class Profile extends Component {
   }
 
   componentDidMount(){
+    console.log('Hi From Profile', ' Component Did Mount');
     this.updateUser();
-    const userInUrl = this.props.username.username;
-    this.setState({userInUrl});
+  }
+  componentWillUnmount(){
+    console.log('Bye From Profile', ' Component Will UnMount');
   }
 
   componentDidUpdate(){
+    console.log('Hi from Profile', 'Component Did Update!');
     if(this.props.username.username !== this.state.userInUrl){
       const userInUrl = this.props.username.username;
       this.updateUser();
@@ -42,16 +45,16 @@ class Profile extends Component {
   }
 
   updateUser = () =>{
-    this.callApi()
+    this.callUserApi()
       .then(res => {
-        console.log('updating user');
         const user = res[0];
-        this.setState({ user })
+        const userInUrl = this.props.username.username;
+        this.setState({ user, userInUrl })
       })
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
+  callUserApi = async () => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
@@ -138,127 +141,131 @@ class Profile extends Component {
         fontSize: '1em'
       };
     }
-
-    return (
-      <div>
-        <h1>Profile</h1>
-        <img alt={`Avatar of ${user.username}`} src={user.avatar}/>
-        <div>Username: {user.username}</div>
-
-        <div>Description:
-          <input
-            onClick={this.handleClick}
-            onChange={(e)=>this.handleChange(e, 'description')}
-            style={editStyle}
-            readOnly={!edit ? true : false}
-            contentEditable={!edit ? false : true}
-            type="text"
-            value={user.description}/>
-        </div>
-
-        <div>Location:
-          <input
-            onClick={this.handleClick}
-            onChange={(e)=>this.handleChange(e, 'location', 'city')}
-            style={editStyle}
-            readOnly={!edit ? true : false}
-            contentEditable={!edit ? false : true}
-            type="text"
-            value={user.location.city}/>
-          <input
-            onClick={this.handleClick}
-            onChange={(e)=>this.handleChange(e, 'location', 'state')}
-            style={editStyle}
-            readOnly={!edit ? true : false}
-            contentEditable={!edit ? false : true}
-            type="text"
-            value={user.location.state}/>
-          <input
-            onClick={this.handleClick}
-            onChange={(e)=>this.handleChange(e, 'location', 'country')}
-            style={editStyle}
-            readOnly={!edit ? true : false}
-            contentEditable={!edit ? false : true}
-            type="text"
-            value={user.location.country}/>
-        </div>
-        <p>Links:</p>
-        { !edit ?
-          <ul>
-            <li>Twitter:
-              <a href={user.links.twitter}>
-                {user.links.twitter}
-              </a>
-            </li>
-            <li>Instagram:
-              <a href={user.links.instagram}>
-                {user.links.instagram}
-              </a>
-            </li>
-            <li>SoundCloud:
-              <a href={user.links.soundcloud}>
-                {user.links.soundcloud}
-              </a>
-            </li>
-          </ul>
-        :
-          <ul>
-            <li>Twitter:
-              <input
-                onClick={this.handleClick}
-                onChange={(e)=>this.handleChange(e, 'links', 'twitter')}
-                style={editStyle}
-                readOnly={!edit ? true : false}
-                contentEditable={!edit ? false : true}
-                type="text"
-                value={user.links.twitter}/>
-            </li>
-            <li>Instagram:
-              <input
-                onClick={this.handleClick}
-                onChange={(e)=>this.handleChange(e, 'links', 'instagram')}
-                style={editStyle}
-                readOnly={!edit ? true : false}
-                contentEditable={!edit ? false : true}
-                type="text"
-                value={user.links.instagram}/>
-            </li>
-            <li>SoundCloud:
-              <input
-                onClick={this.handleClick}
-                onChange={(e)=>this.handleChange(e, 'links', 'soundcloud')}
-                style={editStyle}
-                readOnly={!edit ? true : false}
-                contentEditable={!edit ? false : true}
-                type="text"
-                value={user.links.soundcloud}/>
-            </li>
-          </ul>
-        }
-
-        <p>Following:</p>
-        <p>You are following {user.following.length} users.</p>
-        <ul>
-          {user.following.length>0 ?
-            user.following.map((user,index)=>{
-              return <Link key={`${user}_${index}_${uuidv1()}`} to={`/users/${user}/`}><li>{user}</li></Link>
-            })
-            :
-            <li>List empty</li>
-          }
-        </ul>
+    if(user.username !== ''){
+      return (
         <div>
-          {
-            this.props.username.username === currentUser && !this.state.edit &&
-            <button onClick={this.enableEdit}>Edit this profile</button>
+          <h1>Profile</h1>
+          <img alt={`Avatar of ${user.username}`} src={user.avatar}/>
+          <div>Username: {user.username}</div>
+
+          <div>Description:
+            <input
+              onClick={this.handleClick}
+              onChange={(e)=>this.handleChange(e, 'description')}
+              style={editStyle}
+              readOnly={!edit ? true : false}
+              contentEditable={!edit ? false : true}
+              type="text"
+              value={user.description}/>
+          </div>
+
+          <div>Location:
+            <input
+              onClick={this.handleClick}
+              onChange={(e)=>this.handleChange(e, 'location', 'city')}
+              style={editStyle}
+              readOnly={!edit ? true : false}
+              contentEditable={!edit ? false : true}
+              type="text"
+              value={user.location.city}/>
+            <input
+              onClick={this.handleClick}
+              onChange={(e)=>this.handleChange(e, 'location', 'state')}
+              style={editStyle}
+              readOnly={!edit ? true : false}
+              contentEditable={!edit ? false : true}
+              type="text"
+              value={user.location.state}/>
+            <input
+              onClick={this.handleClick}
+              onChange={(e)=>this.handleChange(e, 'location', 'country')}
+              style={editStyle}
+              readOnly={!edit ? true : false}
+              contentEditable={!edit ? false : true}
+              type="text"
+              value={user.location.country}/>
+          </div>
+          <p>Links:</p>
+          { !edit ?
+            <ul>
+              <li>Twitter:
+                <a href={user.links.twitter}>
+                  {user.links.twitter}
+                </a>
+              </li>
+              <li>Instagram:
+                <a href={user.links.instagram}>
+                  {user.links.instagram}
+                </a>
+              </li>
+              <li>SoundCloud:
+                <a href={user.links.soundcloud}>
+                  {user.links.soundcloud}
+                </a>
+              </li>
+            </ul>
+          :
+            <ul>
+              <li>Twitter:
+                <input
+                  onClick={this.handleClick}
+                  onChange={(e)=>this.handleChange(e, 'links', 'twitter')}
+                  style={editStyle}
+                  readOnly={!edit ? true : false}
+                  contentEditable={!edit ? false : true}
+                  type="text"
+                  value={user.links.twitter}/>
+              </li>
+              <li>Instagram:
+                <input
+                  onClick={this.handleClick}
+                  onChange={(e)=>this.handleChange(e, 'links', 'instagram')}
+                  style={editStyle}
+                  readOnly={!edit ? true : false}
+                  contentEditable={!edit ? false : true}
+                  type="text"
+                  value={user.links.instagram}/>
+              </li>
+              <li>SoundCloud:
+                <input
+                  onClick={this.handleClick}
+                  onChange={(e)=>this.handleChange(e, 'links', 'soundcloud')}
+                  style={editStyle}
+                  readOnly={!edit ? true : false}
+                  contentEditable={!edit ? false : true}
+                  type="text"
+                  value={user.links.soundcloud}/>
+              </li>
+            </ul>
           }
-          {
-            this.props.username.username === currentUser && this.state.edit &&
-            <button onClick={this.saveChanges}>Save Changes</button>
-          }
+
+          <p>Following:</p>
+          <p>You are following {user.following.length} users.</p>
+          <ul>
+            {user.following.length>0 ?
+              user.following.map((user,index)=>{
+                return <Link key={`${user}_${index}_${uuidv1()}`} to={`/users/${user}/`}><li>{user}</li></Link>
+              })
+              :
+              <li>List empty</li>
+            }
+          </ul>
+          <div>
+            {
+              this.props.username.username === currentUser && !this.state.edit &&
+              <button onClick={this.enableEdit}>Edit this profile</button>
+            }
+            {
+              this.props.username.username === currentUser && this.state.edit &&
+              <button onClick={this.saveChanges}>Save Changes</button>
+            }
+          </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+      return null;
+    }
+
   }
 }
 

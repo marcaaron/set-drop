@@ -5,15 +5,18 @@ import format from 'date-fns/format';
 const FORMAT = 'M/D/YYYY';
 
 class Set extends Component {
-  componentDidMount(){
-    console.log('set component did mount');
-  }
 
   deleteSet = (id) => {
     const message = 'Are you sure you want to delete this set?\nThis action can not be undone!';
     let confirm = window.confirm(message);
     if(confirm){
-      this.callDelete(id);
+      this.callDelete(id)
+        .then(res=>{
+          this.props.updateSets();
+        })
+        .catch(err=>{
+          console.log(err);
+        });
     }else{
       return;
     }
@@ -35,7 +38,7 @@ class Set extends Component {
       throw Error(body.message);
     }else{
       this.props.history.push(`/sets/${this.props.currentUser}`);
-      console.log('sets updated');
+      console.log('set updated');
       return body;
     }
   };
@@ -49,6 +52,7 @@ class Set extends Component {
     if(set){
       address = set.location.address;
     }
+    console.log(set, address);
     return (
       <div>
         <h1>Set</h1>

@@ -32,7 +32,7 @@ class App extends Component {
       authUser: null,
       sets: [],
       currentUser: null,
-      selectedSetID: null,
+      selectedSetID: null
     }
   }
 
@@ -87,7 +87,7 @@ class App extends Component {
   };
 
   render() {
-    const {authUser, sets, selectedSetID, currentUser} = this.state;
+    const {authUser, user, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
         <div>
@@ -95,56 +95,109 @@ class App extends Component {
           <hr/>
           <Route
             exact path={routes.LANDING}
-            component={() => <Landing />}
+            component={() =>
+              <Landing />}
           />
           <Route
             exact path={routes.USER_LIST}
-            component={() => <UserList currentUser={currentUser} />}
+            component={() =>
+              <UserList
+                currentUser={currentUser}
+              />}
           />
           <Route
             exact path={routes.ADD}
-            component={({match}) => <Edit updateSets={this.updateSets} currentUser={currentUser} route={match}/>}
+            component={({match}) =>
+            <Edit
+              updateSets={this.updateSets}
+              currentUser={currentUser}
+              route={match}
+            />}
           />
+
           <Route
             exact path={routes.SETS}
-            component={() => <Sets updateSets={this.updateSets} sets={sets}  />}
+            component={() =>
+              <Sets
+                updateSets={this.updateSets}
+                sets={sets}
+              />}
           />
+
           <Route
             exact path={routes.SIGN_UP}
-            component={() => <SignUp />}
+            component={() =>
+              <SignUp
+              />}
           />
+
           <Route
             exact path={routes.LOG_IN}
             component={() => <LogIn />}
           />
+
           <Route
             exact path={routes.PROFILE}
-            component={({match}) => <Profile username={match.params} currentUser={currentUser}/>}
+            component={({match}) =>
+            <Profile
+              username={match.params}
+              currentUser={currentUser}/>}
           />
+
           <Route
             exact path={routes.SET}
-            component={({match}) => <Set currentUser={currentUser} handleSelectedSetID={this.handleSelectedSetID} slug={match.params} sets={sets}/>}
+            component={({match}) =>
+            <Set
+              currentUser={currentUser}
+              handleSelectedSetID={this.handleSelectedSetID}
+              slug={match.params}
+              updateSets={this.updateSets}
+              sets={sets}/>}
           />
+
+          {/* USERSETS ROUTE */}
+
           <Route
             exact path={routes.USER_SETS}
-            component={({match}) => <UserSets username={match.params}/>}
+            component={({match}) =>
+            <UserSets
+              sets={sets}
+              username={match.params}/>}
           />
+
           <Route
             exact path={routes.STREAM}
-            component={() => <Stream sets={sets} currentUser={currentUser}/>}
+            component={() =>
+              <Stream
+                sets={sets}
+                currentUser={currentUser}/>}
           />
+
           <Route
             exact path={routes.HOME}
-            component={() => <Home currentUser={currentUser}/>}
+            component={() =>
+              <Home
+                currentUser={currentUser}/>}
           />
+
           <Route
             exact path={routes.ACCOUNT}
-            component={() => <Account />}
+            component={() =>
+              <Account />}
           />
+
           <Route
             exact path={routes.EDIT}
-            component={({match}) => <Edit route={match} id={selectedSetID} updateSets={this.updateSets} currentUser={currentUser} slug={match.params} />}
+            component={({match}) =>
+            <Edit
+              authUser={authUser}
+              route={match}
+              id={selectedSetID}
+              updateSets={this.updateSets}
+              currentUser={currentUser}
+              slug={match.params} />}
           />
+
         </div>
       </Router>
     );

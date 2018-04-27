@@ -63,7 +63,7 @@ class LogInForm extends Component {
         <input
           value={password1}
           onChange={(e)=>this.handleChange(e,'password1')}
-          type="text"
+          type="password"
           placeholder="Password"
         />
         <button type="submit" disabled={disabled}>Sign In</button>

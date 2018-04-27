@@ -215,6 +215,7 @@ class Edit extends Component {
         oldJson:{}
       };
       this.setState(state);
+      this.props.updateSets();
       this.props.history.push(`/sets/${this.props.currentUser}`);
       return body;
     }
@@ -232,7 +233,6 @@ class Edit extends Component {
     const value = e.target.value;
     let json = {...this.state.json};
     let objectToMutate = {...json[object]};
-    console.log('venue info change has taken place');
     if(args.length===0){
       objectToMutate[prop] = value;
     }else{
@@ -243,11 +243,9 @@ class Edit extends Component {
     }
     json[object] = objectToMutate;
     this.setState({json})
-    console.log(JSON.stringify(json)===JSON.stringify(this.state.oldJson));
   }
 
   handleListChange = (e, prop, index, ...args) => {
-    console.log('change has taken place');
     const value = e.target.value;
     let json = {...this.state.json};
     let list = [...json.list];
@@ -263,7 +261,6 @@ class Edit extends Component {
     list[index] = listObject;
     json.list = list;
     this.setState({json});
-    console.log(JSON.stringify(json)===JSON.stringify(this.state.oldJson));
   }
 
   addListItem = (e, index) => {

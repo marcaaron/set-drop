@@ -5,60 +5,16 @@ const FORMAT = 'M/D/YYYY';
 const uuidv1 = require('uuid/v1');
 
 class UserSets extends Component {
-
-  constructor(props){
-    super(props);
-    this.state = {
-      sets:[],
-      username:''
-    }
-  }
-
-  componentDidMount(){
-    console.log('UserSets component mounted')
-    this.updateSets();
-  }
-
-  updateSets = () => {
-    const username = this.props.username.username;
-    this.callApi(username)
-      .then(res => {
-        this.setState({ sets: res, username })
-      })
-      .catch(err => console.log(err));
-  }
-
-  componentDidUpdate(){
-    if(this.state.username !== this.props.username.username){
-      this.updateSets();
-      console.log('updating sets');
-    }
-    console.log(this.props.username.username);
-  }
-
-  callApi = async (username) => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-
-    // Change API endpoint back to /api/setlists for deployment
-    // const response = await fetch(`/api/setlists/${username}`, headers);
-
-    const response = await fetch(`http://localhost:5000/api/setlists/${username}`, headers);
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
-
   render() {
-    const {sets} = this.state;
+    const {sets} = this.props;
     const username = this.props.username.username;
+    let userSets = sets.filter(set=>set.username === this.props.username.username);
     return (
       <div>
         <h1>{`${username[username.length-1]==='s' ? username+"'" : username+"'s" }`} Sets</h1>
           <div className="set-container">
             {
-              sets && sets.length>0 && sets.map(set =>
+              sets && userSets.length>0 && userSets.map(set =>
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
                   <div className="set-item">
                     <div className="date">{format(set.date, FORMAT)}</div>
@@ -69,7 +25,7 @@ class UserSets extends Component {
                 </Link>
             )}
             {
-              sets && sets.length===0 &&
+              sets && userSets.length===0 &&
                 <div>
                   <Link to={`/add-set/`}>
                     Click Here to Create Your First Set

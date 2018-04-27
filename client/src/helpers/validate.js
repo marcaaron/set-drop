@@ -3,6 +3,7 @@ const validate = (json) => {
   const badListItems = json.list.map((item,index)=>{
     if(item.artist.name === '') return [index, 'artist'];
     if(item.title.name === '') return [index, 'title'];
+    return undefined;
   }).filter(item=>item !== undefined);
 
    console.log(json);

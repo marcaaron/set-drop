@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class VenueInfo extends Component {
   render() {
-    const {handleChange, err} = this.props;
+    const {handleVenueChange, err} = this.props;
     const {location} = this.props.json;
     const {street_number, street, city, state, country, postal_code} = location.address;
     const {venue, phone, website} = location;
@@ -13,7 +13,7 @@ class VenueInfo extends Component {
             <input
               type="text"
               placeholder="Venue Name"
-              onChange={(e)=>handleChange(e, 'location','venue')}
+              onChange={(e)=>handleVenueChange(e, 'location','venue')}
               value={venue && venue}
               required
             />
@@ -21,7 +21,7 @@ class VenueInfo extends Component {
             <input
               type="text"
               placeholder="Street Number"
-              onChange={(e)=>handleChange(e, 'location','address','street_number')}
+              onChange={(e)=>handleVenueChange(e, 'location','address','street_number')}
               value={street_number && street_number}
               required
             />
@@ -30,7 +30,7 @@ class VenueInfo extends Component {
             <input
               type="text"
               placeholder="Street"
-              onChange={(e)=>handleChange(e, 'location','address','street')}
+              onChange={(e)=>handleVenueChange(e, 'location','address','street')}
               value={street && street}
               required
             />
@@ -39,7 +39,7 @@ class VenueInfo extends Component {
             <input
               type="text"
               placeholder="City"
-              onChange={(e)=>handleChange(e, 'location','address','city')}
+              onChange={(e)=>handleVenueChange(e, 'location','address','city')}
               value={city && city}
               required
             />
@@ -48,7 +48,7 @@ class VenueInfo extends Component {
              <input
                type="text"
                placeholder="State"
-               onChange={(e)=>handleChange(e, 'location','address','state')}
+               onChange={(e)=>handleVenueChange(e, 'location','address','state')}
                value={state && state}
                required
              />
@@ -57,7 +57,7 @@ class VenueInfo extends Component {
              <input
                type="text"
                placeholder="Country"
-               onChange={(e)=>handleChange(e, 'location','address','country')}
+               onChange={(e)=>handleVenueChange(e, 'location','address','country')}
                value={country && country}
                required
              />
@@ -66,7 +66,7 @@ class VenueInfo extends Component {
              <input
                type="text"
                placeholder="Postal Code"
-               onChange={(e)=>handleChange(e, 'location','address','postal_code')}
+               onChange={(e)=>handleVenueChange(e, 'location','address','postal_code')}
                value={postal_code && postal_code}
                required
              />
@@ -75,14 +75,14 @@ class VenueInfo extends Component {
              <input
                type="text"
                placeholder="Phone"
-               onChange={(e)=>handleChange(e, 'location','phone')}
+               onChange={(e)=>handleVenueChange(e, 'location','phone')}
                value={phone && phone}
                required
              />
              <input
                type="text"
                placeholder="Website"
-               onChange={(e)=>handleChange(e, 'location','website')}
+               onChange={(e)=>handleVenueChange(e, 'location','website')}
                value={website && website}
                required
              />

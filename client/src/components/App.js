@@ -1,10 +1,13 @@
-// Styles
+// STYLES
 import '../styles/css/App.css';
 
-// Components
+// DEV COMPONENTS
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-  // Page Components
+import { firebase } from '../firebase';
+import { db } from '../firebase';
+
+// SITE COMPONENTS
 import Nav from './Nav';
 import Landing from './Landing';
 import SignUp from './SignUp';
@@ -17,25 +20,25 @@ import UserSets from './UserSets';
 import Sets from './Sets';
 import UserList from './UserList';
 import Home from './Home';
-import Account from './Account';
-import { firebase } from '../firebase';
-import { db } from '../firebase';
 
-// Variables
+// ROUTE VARIABLES
 import * as routes from '../constants/routes';
 
+// MAIN APP COMPONENT
 class App extends Component {
-  constructor(props){
-    super(props);
 
-    this.state = {
-      authUser: null,
-      sets: [],
-      currentUser: null,
-      selectedSetID: null
-    }
+  state = {
+    // AUTH OBJECT RETURNED FROM FIREBASE
+    authUser: null,
+    // OUR ENTIRE DB OF SETS TO RENDER ON ANY GIVEN PAGE
+    sets: [],
+    // THE CURRENTLY LOGGED IN USER'S USERNAME
+    currentUser: null,
+    // STORES THE ID OF A SET PASSED UP FROM SET SO WE CAN ACCESS IT VIA THE EDIT PANEL
+    selectedSetID: null
   }
 
+  // SET EVENT FIREBASE EVENT LISTENER TO LISTEN FOR LOG IN AND OUT
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
       if(authUser){
@@ -49,14 +52,11 @@ class App extends Component {
           this.setState(() => ({ authUser: null, currentUser:null }));
       }
     });
+    // MAKE INITIAL CALL TO UPDATESETS
     this.updateSets();
   }
 
-  handleSelectedSetID = (id) => {
-    const selectedSetID = id;
-    this.setState({selectedSetID});
-  }
-
+  // CALLS OUR API GET FUNCTION AND SETS THE RETURNED VALUE TO STATE
   updateSets = () =>{
     this.callApi()
       .then(res => {
@@ -66,6 +66,7 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  // GET FUNCTION TO RETRIEVE THE ENTIRE COLLECTION OF SETS
   callApi = async () => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -86,8 +87,14 @@ class App extends Component {
     }
   };
 
+  // RETRIVE AN ID FROM THE SET COMPONENT AND EXPOSE IT TO THE EDIT COMPONENT
+  handleSelectedSetID = (id) => {
+    const selectedSetID = id;
+    this.setState({selectedSetID});
+  }
+
   render() {
-    const {authUser, user, sets, selectedSetID, currentUser} = this.state;
+    const {authUser, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
         <div>
@@ -181,15 +188,10 @@ class App extends Component {
           />
 
           <Route
-            exact path={routes.ACCOUNT}
-            component={() =>
-              <Account />}
-          />
-
-          <Route
             exact path={routes.EDIT}
             component={({match}) =>
             <Edit
+              sets={sets}
               authUser={authUser}
               route={match}
               id={selectedSetID}

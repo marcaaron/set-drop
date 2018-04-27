@@ -18,11 +18,11 @@ const SignUp = ({history}) =>
   };
 
 class SignUpForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {...INIT_STATE};
-  };
 
+  // INITALIZE STATE WITH INIT_STATE OBJECT
+  state = {...INIT_STATE};
+
+  // SUBMIT HANDLER FOR CREATING NEW ACCOUNT VIA FIREBASE
   onSubmit = (e) => {
     const {username, email, password1} = this.state;
     const {history} = this.props;
@@ -30,7 +30,9 @@ class SignUpForm extends Component {
       .then(authUser => {
         db.doCreateUser(authUser.uid, username, email)
           .then(() => {
-            this.setState(() => ({ ...INIT_STATE }));
+            // RESET THE STATE WHICH IS ACTUALLY NOT NECESSARY???
+            // this.setState(() => ({ ...INIT_STATE }));
+            // REDIRECT USER BACK TO HOME
             history.push(routes.HOME);
           })
           .catch(err => {
@@ -105,13 +107,13 @@ class SignUpForm extends Component {
         <input
           value={password1}
           onChange={(e)=>this.handleChange(e,'password1')}
-          type="text"
+          type="password"
           placeholder="Password"
         />
         <input
           value={password2}
           onChange={(e)=>this.handleChange(e,'password2')}
-          type="text"
+          type="password"
           placeholder="Confirm Password"
         />
         <button type="submit" disabled={disabled}>Sign Up</button>

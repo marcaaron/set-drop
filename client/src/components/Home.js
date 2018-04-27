@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SignOut from './SignOut';
 
-class Home extends Component {
-  render() {
-    const {currentUser} = this.props;
-    return (
-      <div>
-        <h1>Home</h1>
-        <p>Welcome {currentUser}!</p>
-        {currentUser &&
-          <div className="wrong-user">
-            <p>Not {currentUser}?</p><SignOut/>
-          </div>
-        }
-      </div>
-    );
-  }
+const Home = (props) => {
+  const {currentUser} = props;
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Welcome {currentUser}!</p>
+      {currentUser &&
+        <div className="wrong-user">
+          <p>Not {currentUser}?</p><SignOut/>
+        </div>
+      }
+    </div>
+  );
 }
 
 export default Home;

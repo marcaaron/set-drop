@@ -52,7 +52,6 @@ class Set extends Component {
     if(set){
       address = set.location.address;
     }
-    console.log(set, address);
     return (
       <div>
         <h1>Set</h1>

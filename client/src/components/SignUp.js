@@ -30,8 +30,6 @@ class SignUpForm extends Component {
       .then(authUser => {
         db.doCreateUser(authUser.uid, username, email)
           .then(() => {
-            // RESET THE STATE WHICH IS ACTUALLY NOT NECESSARY???
-            // this.setState(() => ({ ...INIT_STATE }));
             // REDIRECT USER BACK TO HOME
             history.push(routes.HOME);
           })
@@ -46,6 +44,7 @@ class SignUpForm extends Component {
         console.log(error);
         this.setState({error});
       });
+      // THE POST API WILL CREATE A NEW USER IN OUR DATABASE WITH SOME DEFAULT PARAMENTERS
       const user = {
         username:username
       }
@@ -54,9 +53,8 @@ class SignUpForm extends Component {
     e.preventDefault();
   }
 
+  // SENDS POST REQUEST TO MONGODB TO CREATE A NEW USER
   postApi = async (data) => {
-    console.log(JSON.stringify(data));
-
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
     const options = {
@@ -69,6 +67,7 @@ class SignUpForm extends Component {
     options);
     const body = await response.json();
 
+    // ERROR MESSAGES FROM FIREBASE ARE RETURNED TO THE BODY IF THERE IS A PROBLEM
     if (response.status !== 200){
       throw Error(body.message);
     } else {
@@ -76,14 +75,16 @@ class SignUpForm extends Component {
     }
   };
 
-
+  // CHANGE HANDLER FOR OUR CONTROLLED FORM INPUTS
   handleChange = (e, propName) => {
     this.setState({[propName]:e.target.value});
   }
 
+  // RENDER BLOCK
   render() {
     const {username, email, password1, password2, error} = this.state;
 
+    // VALIDATES OUR FORM TO CHECK FOR EMPTY AND INVALID FIELDS
     const disabled =
       password1 !== password2 ||
       password1 === '' ||
@@ -123,6 +124,7 @@ class SignUpForm extends Component {
   }
 }
 
+// SIGN UP LINK ELEMENT
 const SignUpLink = () =>
   <div>
     <Link to={routes.SIGN_UP}>

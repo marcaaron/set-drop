@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {SignUpLink} from './SignUp';
 import * as routes from '../constants/routes';
 import { auth } from '../firebase';
+import sweatingError from './sweating-error.svg';
 
 const LogIn = ({history}) =>
   <div className="content-container">
@@ -70,7 +71,11 @@ class LogInForm extends Component {
           placeholder="Password"
         />
         <button className="log-in-button" type="submit" disabled={disabled}>Submit</button>
-        { error && <p>{error}</p> }
+        { error &&
+          <p className="sign-up-error">
+            <img alt="Sweating Error Icon" width={40} src={sweatingError}/><br/>{error}
+          </p>
+        }
       </form>
     );
   }

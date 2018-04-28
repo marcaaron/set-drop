@@ -223,3 +223,12 @@ div{
     padding:0.5em;
   }
 }
+
+.sign-up-error{
+  margin:0.5em;
+  padding:0.5em;
+  background-color: white;
+  border: solid tomato 2px;
+  color:$sd-black;
+  text-align: center;
+}

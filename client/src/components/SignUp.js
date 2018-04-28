@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import * as routes from '../constants/routes';
 import { auth, db } from '../firebase';
-
+import sweatingError from './sweating-error.svg';
 const SignUp = ({history}) =>
   <div className="content-container">
     <h1>Sign Up</h1>
@@ -122,7 +122,11 @@ class SignUpForm extends Component {
           placeholder="Confirm Password"
         />
         <button className="log-in-button" type="submit" disabled={disabled}>Sign Up</button>
-        { error && <p>{error}</p> }
+          { error &&
+            <p className="sign-up-error">
+              <img alt="Sweating Error Icon" width={40} src={sweatingError}/><br/>{error}
+            </p>
+          }
       </form>
     );
   }

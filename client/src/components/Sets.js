@@ -23,7 +23,9 @@ class Sets extends Component {
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
                   <div className="set-item">
                     <img
-                      style={{width:60, height:60, backgroundColor:'white'}} className="thumbnail-image"
+                      alt={`Avater of ${set.username}`}
+                      style={{width:60, height:60, backgroundColor:'white'}}
+                      className="thumbnail-image"
                       src={getUserAvatar(set.username)}
                     />
                     <div className="set-item-info">

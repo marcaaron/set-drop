@@ -38,7 +38,9 @@ class App extends Component {
     // THE CURRENTLY LOGGED IN USER'S USERNAME
     currentUser: null,
     // STORES THE ID OF A SET PASSED UP FROM SET SO WE CAN ACCESS IT VIA THE EDIT PANEL
-    selectedSetID: null
+    selectedSetID: null,
+    // OUR ENTIRE DB OF USERS
+    userList: null
   }
 
   // SET EVENT FIREBASE EVENT LISTENER TO LISTEN FOR LOG IN AND OUT
@@ -57,6 +59,7 @@ class App extends Component {
     });
     // MAKE INITIAL CALL TO UPDATESETS
     this.updateSets();
+    this.updateUsers();
   }
 
   // CALLS OUR API GET FUNCTION AND SETS THE RETURNED VALUE TO STATE
@@ -90,6 +93,38 @@ class App extends Component {
     }
   };
 
+  // GET ALL USERS
+
+  updateUsers = () =>{
+    this.getUserList()
+      .then(res => {
+        console.log('updating users');
+        const userList = res;
+        this.setState({ userList })
+      })
+      .catch(err => console.log(err));
+  }
+
+  getUserList = async () => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+
+    // Change API endpoint back to /api/setlists for deployment
+    // const response = await fetch('/api/setlists', headers);
+
+    const response = await fetch(`http://localhost:5000/api/users/`, headers);
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      console.log('problem with response');
+      throw Error(body.message);
+    }else{
+      console.log('users found');
+      return body;
+    }
+  };
+
   // RETRIVE AN ID FROM THE SET COMPONENT AND EXPOSE IT TO THE EDIT COMPONENT
   handleSelectedSetID = (id) => {
     const selectedSetID = id;
@@ -97,7 +132,7 @@ class App extends Component {
   }
 
   render() {
-    const {authUser, sets, selectedSetID, currentUser} = this.state;
+    const {authUser, userList, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
         <div className="app-container">
@@ -115,6 +150,7 @@ class App extends Component {
             exact path={routes.USER_LIST}
             component={() =>
               <UserList
+                userList={userList}
                 currentUser={currentUser}
               />}
           />

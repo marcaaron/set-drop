@@ -5,45 +5,14 @@ class UserList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users:[],
       currentUser:{}
     };
   };
 
   componentDidMount(){
-    this.updateUsers();
     this.updateUser();
   }
 
-  updateUsers = () =>{
-    this.callApi()
-      .then(res => {
-        console.log('updating users');
-        const users = res;
-        this.setState({ users })
-      })
-      .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-    headers.append("Accept", "application/json");
-
-    // Change API endpoint back to /api/setlists for deployment
-    // const response = await fetch('/api/setlists', headers);
-
-    const response = await fetch(`http://localhost:5000/api/users/`, headers);
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      console.log('problem with response');
-      throw Error(body.message);
-    }else{
-      console.log('users found');
-      return body;
-    }
-  };
 
   updateUser = () =>{
     this.getCurrentUser()
@@ -110,11 +79,12 @@ class UserList extends Component {
   };
 
   render() {
-    const {users, currentUser} = this.state;
+    const {currentUser} = this.state;
+    const {userList} = this.props;
     console.log(currentUser && currentUser.following);
     return (
       <div className="user-list">
-        {users.map((user,index)=>{
+        {userList && userList.map((user,index)=>{
           if(this.props.currentUser !== user.username){
             return (
               <div key={`link_${user.username}_${index}`} className="user-item">

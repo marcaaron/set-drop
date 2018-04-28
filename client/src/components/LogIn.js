@@ -55,19 +55,21 @@ class LogInForm extends Component {
     return (
       <form className="log-in-form" onSubmit={this.onSubmit}>
         <input
+          className="log-in-input"
           value={email}
           onChange={(e)=>this.handleChange(e,'email')}
           type="text"
           placeholder="E-Mail"
         />
         <input
+          className="log-in-input"
           value={password1}
           suggested = "current-password"
           onChange={(e)=>this.handleChange(e,'password1')}
           type="password"
           placeholder="Password"
         />
-        <button type="submit" disabled={disabled}>Sign In</button>
+        <button className="log-in-button" type="submit" disabled={disabled}>Submit</button>
         { error && <p>{error}</p> }
       </form>
     );

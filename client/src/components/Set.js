@@ -53,25 +53,23 @@ class Set extends Component {
       address = set.location.address;
     }
     return (
-      <div>
-        <h1>Set</h1>
+      <div className="set-container-top">
+        <h1>{set && set.username} @ {set && set.location.venue}</h1>
           <div className="set-container">
             {
               set && address &&
-                  <div key={`keyFor_${set.slug}`} className="set-item">
-                    <div className="date">{format(set.date, FORMAT)}</div>
-                    <div className="venue">{set.location.venue}</div>
-                    <div className="address">{address.address_line}</div>
-                    <div className="city-state">{address.city}, {address.state} {address.postal_code}</div>
-                    <div className="user">–posted by {set.username}</div>
-                    <br/>
-                    <div className="track-list-label"><strong>SET LIST:</strong></div>
+                  <div style={{width:'100%'}} key={`keyFor_${set.slug}`} >
+                    <div className="date-place">{format(set.date, FORMAT)} – {address.city}, {address.state}</div>
                     <ul className="track-list">
+                      <div className="track">
+                        <div className="track-item tracklist-header">ARTIST</div>
+                        <div className="track-item tracklist-header">TITLE</div>
+                      </div>
                       {
                         set.list.map((track, index)=>[
                           <div key={`${index}_${set.slug}`} className="track">
-                            <div>{track.artist.name}</div>
-                            <div>{track.title.name}</div>
+                            <div className="track-item">{track.artist.name}</div>
+                            <div className="track-item">{track.title.name}</div>
                           </div>
                         ]
                         )
@@ -82,9 +80,9 @@ class Set extends Component {
                       set.username === currentUser &&
                       <div className="user-edit-controls">
                         <Link onClick={()=>this.props.handleSelectedSetID(set._id)}to={`/edit/${set.slug}`}>
-                          <button>Edit</button>
+                          <button className="set-edit-button">Edit</button>
                         </Link>
-                        <button onClick={()=>this.deleteSet(set._id)}>Delete</button>
+                        <button className="set-delete-button" onClick={()=>this.deleteSet(set._id)}>Delete</button>
                       </div>
                     }
                   </div>

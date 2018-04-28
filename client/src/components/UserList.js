@@ -68,14 +68,24 @@ class UserList extends Component {
     const currentUser = {...this.state.currentUser};
     currentUser.following.push(username);
     this.setState({currentUser});
-    this.putApi(currentUser);
+    this.putApi(currentUser)
+    .then(res=>
+      console.log(res)
+    ).catch(err=>{
+      console.log(err)
+    });
   };
 
   handleUnfollow = (e, username) => {
     const currentUser = {...this.state.currentUser};
     currentUser.following.splice(currentUser.following.indexOf(username),1);
     this.setState({currentUser});
-    this.putApi(currentUser);
+    this.putApi(currentUser)
+    .then(res=>
+      console.log(res)
+    ).catch(err=>{
+      console.log(err)
+    });
   };
 
   render() {

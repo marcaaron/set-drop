@@ -151,6 +151,7 @@ class App extends Component {
             component={() =>
               <UserList
                 userList={userList}
+                updateUsers={this.updateUsers}
                 currentUser={currentUser}
               />}
           />
@@ -168,6 +169,7 @@ class App extends Component {
             exact path={routes.SETS}
             component={() =>
               <Sets
+                userList={userList}
                 updateSets={this.updateSets}
                 sets={sets}
               />}

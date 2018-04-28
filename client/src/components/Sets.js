@@ -7,17 +7,25 @@ const uuidv1 = require('uuid/v1');
 
 class Sets extends Component {
   render() {
-    const {sets} = this.props;
+    const {sets, userList} = this.props;
+
+    const getUserAvatar = (username) =>{
+      const locateUser = userList.filter(user=>user.username===username)[0];
+      return locateUser.avatar;
+    }
 
     return (
-      <div clasName="content-container">
+      <div className="content-container">
         <h1>Recent Sets From All Users</h1>
           <div className="set-container">
             {
-              sets && sets.map(set =>
+              sets && userList && sets.map(set =>
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
                   <div className="set-item">
-                    <div style={{width:60, height:60, backgroundColor:'white'}} className="thumbnail-image"/>
+                    <img
+                      style={{width:60, height:60, backgroundColor:'white'}} className="thumbnail-image"
+                      src={getUserAvatar(set.username)}
+                    />
                     <div className="set-item-info">
                       <div className="date-venue">
                         {format(set.date, FORMAT)} @ {set.location.venue}

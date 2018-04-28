@@ -159,3 +159,67 @@ div{
     }
   }
 }
+
+.log-in-form{
+  display:flex;
+  flex-direction: column;
+  .log-in-input{
+    border:$sd-border;
+    font-size: 1.2em;
+    padding:0.5em;
+  }
+  .log-in-button{
+    font-size: 1.2em;
+    padding:0.5em;
+  }
+}
+
+.sign-up-link{
+  text-align:center;
+  padding:0.5em;
+}
+
+.track-list{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+}
+
+.track{
+  display:flex;
+  .track-item{
+    flex:1;
+    padding:0.5em;
+    font-size: 0.85em;
+    border:$sd-border;
+  }
+  .tracklist-header{
+    background-color: $sd-light-black;
+    text-align: center;
+    font-size:1em;
+  }
+}
+.date-place{
+  text-align: center;
+  padding:0.5em;
+}
+.set-container-top{
+  width:100%;
+}
+
+.user-edit-controls{
+  display:flex;
+  flex-direction: column;
+  a{
+    button{
+      width:100%;
+      font-size: 1.2em;
+      padding:0.5em;
+    }
+  }
+  button{
+    width:100%;
+    font-size: 1.2em;
+    padding:0.5em;
+  }
+}

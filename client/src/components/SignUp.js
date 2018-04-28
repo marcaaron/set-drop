@@ -92,32 +92,36 @@ class SignUpForm extends Component {
       username === '';
 
     return (
-      <form className="sign-up-form" onSubmit={this.onSubmit}>
+      <form className="log-in-form" onSubmit={this.onSubmit}>
         <input
+          className="log-in-input"
           value={username}
           onChange={(e)=>this.handleChange(e,'username')}
           type="text"
           placeholder="Username"
         />
         <input
+          className="log-in-input"
           value={email}
           onChange={(e)=>this.handleChange(e,'email')}
           type="text"
           placeholder="E-Mail"
         />
         <input
+          className="log-in-input"
           value={password1}
           onChange={(e)=>this.handleChange(e,'password1')}
           type="password"
           placeholder="Password"
         />
         <input
+          className="log-in-input"
           value={password2}
           onChange={(e)=>this.handleChange(e,'password2')}
           type="password"
           placeholder="Confirm Password"
         />
-        <button type="submit" disabled={disabled}>Sign Up</button>
+        <button className="log-in-button" type="submit" disabled={disabled}>Sign Up</button>
         { error && <p>{error}</p> }
       </form>
     );
@@ -126,9 +130,9 @@ class SignUpForm extends Component {
 
 // SIGN UP LINK ELEMENT
 const SignUpLink = () =>
-  <div>
+  <div className="sign-up-link">
     <Link to={routes.SIGN_UP}>
-      Sign Up to Use This Service
+      Don't have an account? <br/>Click here to create one.
     </Link>
   </div>
 

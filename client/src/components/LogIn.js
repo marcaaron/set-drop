@@ -62,6 +62,7 @@ class LogInForm extends Component {
         />
         <input
           value={password1}
+          suggested = "current-password"
           onChange={(e)=>this.handleChange(e,'password1')}
           type="password"
           placeholder="Password"

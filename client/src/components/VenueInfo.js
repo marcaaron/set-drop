@@ -18,6 +18,7 @@ const VenueInfo = (props) => {
       {err.venue && <div style={{color:'red'}}>{err.venue}</div>}
       <input
         type="text"
+        autoComplete='address-line1'
         placeholder="Street Number"
         onChange={(e)=>handleVenueChange(e, 'location','address','street_number')}
         value={street_number || ''}

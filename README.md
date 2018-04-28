@@ -1,5 +1,5 @@
 ## SetDrop (In Progress)
-**An Open-Source Set List App Connecting DJs, Fans, and Venues**
+**A Set List App Connecting DJs, Fans, and Venues**
 
 Socially driven single page app that allows DJs to publish their "set lists" from past events. Performer's can create an account, edit their public profile, manually create update or delete their set lists, and optionally use the ubiquitous software Rekordbox by Pioneer to export their past playlists to a text file that will get parsed by SetDrop and saved to the database via a RESTful API. Metadata such as date, location, and track lists are stored.
 

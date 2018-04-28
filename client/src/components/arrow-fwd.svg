@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" width="500" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <path d="M 398.631 99.597 L 558.188 399.597 L 239.074 399.597 L 398.631 99.597 Z" transform="matrix(0, 1, -1, 0, 499.59658813476557, -139.07421875)" style="stroke-linejoin: round; stroke-linecap: round; stroke-width: 50; stroke: rgb(48, 232, 238); fill: none; fill-opacity: 0;" bx:shape="triangle 239.074 99.597 319.114 300 0.5 0 1@d6fdcaeb"/>
+</svg>

@@ -1,19 +1,85 @@
 $font-stack: 'Source Sans Pro', sans-serif;
-$primary-color: #191919;
-$secondary-color: #D05353;
-$tertiary-color: #E58F65;
-$quaternary-color: #F9E784;
+$sd-black: #2f2f2f;
+$sd-blue: #30e8ee;
+$sd-links: #00bac0;
+$sd-light-bg: #9dd8e1;
+$sd-font-color: #141414;
+$sd-light-black: #5d5e5e;
+
+$sd-border: solid 1px $sd-light-black;
 
 body{
   margin: 0;
   padding: 0;
   font: 100% $font-stack;
-  color: $primary-color;
-  background-color: $quaternary-color;
+  color: white;
+  background-color: $sd-black;
+}
+
+.app-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-logo{
+  width:130px;
+  padding-top:0.6em;
+  padding-bottom:0.3em;
+}
+
+header{
+  text-align: center;
+  width:100%;
+}
+
+ul{
+  list-style: none;
+  margin:0;
+  padding:0;
+  li{
+    background-color: $sd-light-bg;
+    flex:1;
+    border:$sd-border;
+    text-align: center;
+    a{
+      display:block;
+      padding:1em 0;
+      color:black;
+      font-size:0.8em;
+      font-weight:600;
+    }
+  }
+}
+
+.nav{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 }
 
 a{
-  color:$secondary-color;
+  color:$sd-links;
+  text-decoration: none;
+  width:100%;
+}
+
+h1{
+  margin:0;
+  padding:0.6em 0;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 400;
+  background-color: $sd-light-black;
+  width:100%;
+}
+
+div{
+  .content-container{
+    width:100%;
+  }
 }
 
 .google-logo{
@@ -28,9 +94,32 @@ a{
 }
 
 .set-item{
-  margin:10px;
-  padding:10px;
-  border:1px solid black;
+  border:$sd-border;
+  display:flex;
+  align-items: center;
+  .thumbnail-image{
+    margin:0.5em;
+  }
+  .set-item-info{
+    color:white;
+    margin-left: 0.5em;
+    .date-venue{
+      font-size: 0.9em;
+    }
+    .user{
+     font-size: 1.3em;
+    }
+  }
+  .arrow-box{
+    display:flex;
+    height:2em;
+    flex:1;
+    flex-direction: column;
+    align-items: flex-end;
+    .arrow-svg{
+      margin-right: 0.8em;
+    }
+  }
 }
 
 .set-container{

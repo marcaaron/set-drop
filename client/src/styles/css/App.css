@@ -2,11 +2,62 @@ body {
   margin: 0;
   padding: 0;
   font: 100% "Source Sans Pro", sans-serif;
-  color: #191919;
-  background-color: #F9E784; }
+  color: white;
+  background-color: #2f2f2f; }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.app-logo {
+  width: 130px;
+  padding-top: 0.6em;
+  padding-bottom: 0.3em; }
+
+header {
+  text-align: center;
+  width: 100%; }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  ul li {
+    background-color: #9dd8e1;
+    flex: 1;
+    border: solid 1px #5d5e5e;
+    text-align: center; }
+    ul li a {
+      display: block;
+      padding: 1em 0;
+      color: black;
+      font-size: 0.8em;
+      font-weight: 600; }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around; }
 
 a {
-  color: #D05353; }
+  color: #00bac0;
+  text-decoration: none;
+  width: 100%; }
+
+h1 {
+  margin: 0;
+  padding: 0.6em 0;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 400;
+  background-color: #5d5e5e;
+  width: 100%; }
+
+div .content-container {
+  width: 100%; }
 
 .google-logo {
   width: 8em;
@@ -18,9 +69,26 @@ a {
   width: 300px; }
 
 .set-item {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid black; }
+  border: solid 1px #5d5e5e;
+  display: flex;
+  align-items: center; }
+  .set-item .thumbnail-image {
+    margin: 0.5em; }
+  .set-item .set-item-info {
+    color: white;
+    margin-left: 0.5em; }
+    .set-item .set-item-info .date-venue {
+      font-size: 0.9em; }
+    .set-item .set-item-info .user {
+      font-size: 1.3em; }
+  .set-item .arrow-box {
+    display: flex;
+    height: 2em;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-end; }
+    .set-item .arrow-box .arrow-svg {
+      margin-right: 0.8em; }
 
 .set-container {
   display: flex;

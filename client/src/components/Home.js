@@ -4,7 +4,7 @@ import SignOut from './SignOut';
 const Home = (props) => {
   const {currentUser} = props;
   return (
-    <div>
+    <div className="content-container">
       <h1>Home</h1>
       <p>Welcome {currentUser}!</p>
       {currentUser &&

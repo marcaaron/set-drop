@@ -24,6 +24,9 @@ import Home from './Home';
 // ROUTE VARIABLES
 import * as routes from '../constants/routes';
 
+// Logo
+
+import setDropWhite from './set-drop-white.svg';
 // MAIN APP COMPONENT
 class App extends Component {
 
@@ -97,9 +100,12 @@ class App extends Component {
     const {authUser, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
-        <div>
-          <Nav authUser={authUser} currentUser={currentUser}/>
-          <hr/>
+        <div className="app-container">
+          <header>
+            <img className="app-logo" alt="Set Drop Logo" src={setDropWhite}/>
+            <Nav authUser={authUser} currentUser={currentUser}/>
+          </header>
+
           <Route
             exact path={routes.LANDING}
             component={() =>

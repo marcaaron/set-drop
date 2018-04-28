@@ -1,28 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as routes from '../constants/routes';
 import SignOutButton from './SignOut';
 
-const Nav = ({authUser, currentUser}) =>
+const Nav = ({authUser, currentUser, location}) =>
   <ul className="nav">
-    {authUser ? <NavAuth currentUser={currentUser}/> : <NavNonAuth/>}
+    {authUser ? <NavAuth route={location.pathname} currentUser={currentUser}/> : <NavNonAuth route={location.pathname}/>}
   </ul>
 
-const NavAuth = ({currentUser}) =>[
-    <li><Link to={routes.HOME}>HOME</Link></li>,
-    <li><Link to={routes.STREAM}>My Stream</Link></li>,
-    <li><Link to={routes.ADD}>Add Set</Link></li>,
-    <li><Link to={routes.SETS}>Browse All Sets</Link></li>,
-    <li><Link to={routes.USER_LIST}>User List</Link></li>,
-    <li><Link to={`/users/${currentUser}`}>Your Profile</Link></li>,
-    <li><Link to={`/sets/${currentUser}`}>Your Sets</Link></li>,
+const NavAuth = ({currentUser, route}) =>{
+  return [
+    <li><Link
+      style={setStyle(routes.HOME, route)}
+      to={routes.HOME}>HOME</Link></li>,
+    <li><Link
+      style={setStyle(routes.STREAM, route)}
+      to={routes.STREAM}>My Stream</Link></li>,
+    <li><Link
+      style={setStyle(routes.ADD, route)}
+      to={routes.ADD}>Add Set</Link></li>,
+    <li><Link
+      style={setStyle(routes.SETS, route)}
+      to={routes.SETS}>Browse All Sets</Link></li>,
+    <li><Link
+      style={setStyle(routes.USER_LIST, route)}
+      to={routes.USER_LIST}>User List</Link></li>,
+    <li><Link
+      style={setStyle(`/users/${currentUser}`, route)}
+      to={`/users/${currentUser}`}>Your Profile</Link></li>,
+    <li><Link
+      style={setStyle(`/sets/${currentUser}`, route)}
+      to={`/sets/${currentUser}`}>Your Sets</Link></li>,
     <li><SignOutButton /></li>
-  ]
+  ];
+};
 
-const NavNonAuth = () =>[
-    <li><Link to={routes.LANDING}>HOME</Link></li>,
-    <li><Link to={routes.SIGN_UP}>SIGN UP</Link></li>,
-    <li><Link to={routes.LOG_IN}>LOG IN</Link></li>,
-    <li><Link to={routes.SETS}>BROWSE</Link></li>
-]
-export default Nav;
+const setStyle = (route, currentRoute) => {
+  let style = {};
+  if(route===currentRoute){
+    style = {fontWeight:700, textDecoration:'underline'};
+  }else{
+   style = {};
+  }
+  return style;
+};
+
+const NavNonAuth = ({route}) =>{
+  return [
+    <li><Link style={setStyle(routes.LANDING, route)} to={routes.LANDING}>HOME</Link></li>,
+    <li><Link style={setStyle(routes.SIGN_UP, route)} to={routes.SIGN_UP}>SIGN UP</Link></li>,
+    <li><Link style={setStyle(routes.LOG_IN, route)} to={routes.LOG_IN}>LOG IN</Link></li>,
+    <li><Link style={setStyle(routes.SETS, route)} to={routes.SETS}>BROWSE</Link></li>
+  ];
+};
+
+export default withRouter(Nav);

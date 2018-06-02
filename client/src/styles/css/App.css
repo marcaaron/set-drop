@@ -5,42 +5,51 @@ body {
   color: white;
   background-color: #2f2f2f; }
 
-.app-container {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center; }
 
-.app-logo {
+.app__header {
+  text-align: center;
+  width: 100%; }
+
+.app__logo {
   width: 130px;
   padding-top: 0.6em;
   padding-bottom: 0.3em; }
 
-header {
-  text-align: center;
-  width: 100%; }
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  ul li {
-    background-color: #9dd8e1;
-    flex: 1;
-    border: solid 1px #5d5e5e;
-    text-align: center; }
-    ul li a {
-      display: block;
-      padding: 1em 0;
-      color: black;
-      font-size: 0.8em;
-      font-weight: 600; }
+.page-container {
+  width: 100%;
+  max-width: 100%;
+  transition: max-width 0.2s linear; }
 
 .nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around; }
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.nav__link {
+  display: block;
+  padding: 1em 0;
+  color: black;
+  font-size: 0.8em;
+  font-weight: 600; }
+  .nav__link:hover {
+    background: white;
+    transition: background 0.2s; }
+
+.nav__item {
+  background-color: #9dd8e1;
+  transition: background 0.2s;
+  flex: 1;
+  border: solid 1px #5d5e5e;
+  text-align: center; }
 
 a {
   color: #00bac0;
@@ -54,9 +63,6 @@ h1 {
   text-align: center;
   font-weight: 400;
   background-color: #5d5e5e;
-  width: 100%; }
-
-div .content-container {
   width: 100%; }
 
 .google-logo {
@@ -115,20 +121,22 @@ div .content-container {
 .user-list {
   display: flex;
   flex-direction: column; }
-  .user-list .user-item {
-    display: flex;
-    padding: 1em; }
-    .user-list .user-item .follow-button {
-      margin: 0 1em; }
 
-.log-in-form {
+.user-list__item {
+  display: flex;
+  padding: 1em; }
+
+.follow-button {
+  margin: 0 1em; }
+
+.auth-form {
   display: flex;
   flex-direction: column; }
-  .log-in-form .log-in-input {
+  .auth-form .auth-form__input {
     border: solid 1px #5d5e5e;
     font-size: 1.2em;
     padding: 0.5em; }
-  .log-in-form .log-in-button {
+  .auth-form .auth-form__btn {
     font-size: 1.2em;
     padding: 0.5em; }
 
@@ -172,12 +180,39 @@ div .content-container {
     font-size: 1.2em;
     padding: 0.5em; }
 
-.sign-up-error {
+.auth-form__error {
   margin: 0.5em;
   padding: 0.5em;
   background-color: white;
   border: solid tomato 2px;
   color: #2f2f2f;
   text-align: center; }
+
+@media screen and (min-width: 500px) {
+  .page-container {
+    max-width: 500px;
+    transition: max-width 0.2s linear;
+    margin-top: 25px; }
+
+  .nav {
+    max-width: 500px;
+    margin: 0 auto; }
+
+  .nav__link {
+    color: white;
+    transition: background 0.2s; }
+    .nav__link:hover {
+      background: white;
+      color: black;
+      transition: background 0.2s; }
+
+  .nav__item {
+    background-color: rgba(0, 0, 0, 0);
+    transition: background 0.2s;
+    border: none; } }
+@media screen and (min-width: 800px) {
+  .page-container {
+    max-width: 500px;
+    transition: max-width 0.2s linear; } }
 
 /*# sourceMappingURL=App.css.map */

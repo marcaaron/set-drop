@@ -15,7 +15,7 @@ class Sets extends Component {
     }
 
     return (
-      <div className="content-container">
+      <div className="page-container">
         <h1>Recent Sets From All Users</h1>
           <div className="set-container">
             {

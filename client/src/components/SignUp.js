@@ -4,7 +4,7 @@ import * as routes from '../constants/routes';
 import { auth, db } from '../firebase';
 import sweatingError from './sweating-error.svg';
 const SignUp = ({history}) =>
-  <div className="content-container">
+  <div className="page-container">
     <h1>Sign Up</h1>
     <SignUpForm history={history}/>
   </div>
@@ -92,38 +92,38 @@ class SignUpForm extends Component {
       username === '';
 
     return (
-      <form className="log-in-form" onSubmit={this.onSubmit}>
+      <form className="auth-form" onSubmit={this.onSubmit}>
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={username}
           onChange={(e)=>this.handleChange(e,'username')}
           type="text"
           placeholder="Username"
         />
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={email}
           onChange={(e)=>this.handleChange(e,'email')}
           type="text"
           placeholder="E-Mail"
         />
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={password1}
           onChange={(e)=>this.handleChange(e,'password1')}
           type="password"
           placeholder="Password"
         />
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={password2}
           onChange={(e)=>this.handleChange(e,'password2')}
           type="password"
           placeholder="Confirm Password"
         />
-        <button className="log-in-button" type="submit" disabled={disabled}>Sign Up</button>
+        <button className="auth-form__btn" type="submit" disabled={disabled}>Sign Up</button>
           { error &&
-            <p className="sign-up-error">
+            <p className="auth-form__error">
               <img alt="Sweating Error Icon" width={40} src={sweatingError}/><br/>{error}
             </p>
           }

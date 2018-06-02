@@ -6,7 +6,7 @@ import { auth } from '../firebase';
 import sweatingError from './sweating-error.svg';
 
 const LogIn = ({history}) =>
-  <div className="content-container">
+  <div className="page-container">
     <h1>Log In</h1>
     <LogInForm history={history}/>
     <SignUpLink />
@@ -54,25 +54,25 @@ class LogInForm extends Component {
       email === '';
 
     return (
-      <form className="log-in-form" onSubmit={this.onSubmit}>
+      <form className="auth-form" onSubmit={this.onSubmit}>
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={email}
           onChange={(e)=>this.handleChange(e,'email')}
           type="text"
           placeholder="E-Mail"
         />
         <input
-          className="log-in-input"
+          className="auth-form__input"
           value={password1}
           suggested = "current-password"
           onChange={(e)=>this.handleChange(e,'password1')}
           type="password"
           placeholder="Password"
         />
-        <button className="log-in-button" type="submit" disabled={disabled}>Submit</button>
+        <button className="auth-form__btn" type="submit" disabled={disabled}>Submit</button>
         { error &&
-          <p className="sign-up-error">
+          <p className="auth-form__error">
             <img alt="Sweating Error Icon" width={40} src={sweatingError}/><br/>{error}
           </p>
         }

@@ -135,9 +135,9 @@ class App extends Component {
     const {authUser, userList, sets, selectedSetID, currentUser} = this.state;
     return (
       <Router>
-        <div className="app-container">
-          <header>
-            <img className="app-logo" alt="Set Drop Logo" src={setDropWhite}/>
+        <div className="app">
+          <header className="app__header">
+            <img className="app__logo" alt="Set Drop Logo" src={setDropWhite}/>
             <Nav authUser={authUser} currentUser={currentUser}/>
           </header>
 

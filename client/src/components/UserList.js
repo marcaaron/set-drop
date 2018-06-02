@@ -97,7 +97,7 @@ class UserList extends Component {
         {userList && userList.map((user,index)=>{
           if(this.props.currentUser !== user.username){
             return (
-              <div key={`link_${user.username}_${index}`} className="user-item">
+              <div key={`link_${user.username}_${index}`} className="user-list__item">
                 <Link to={`/users/${user.username}`}>
                   <div>{user.username}</div>
                 </Link>

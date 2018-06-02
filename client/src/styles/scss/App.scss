@@ -16,40 +16,27 @@ body{
   background-color: $sd-black;
 }
 
-.app-container{
+.app{
   display:flex;
   flex-direction: column;
   align-items: center;
 }
 
-.app-logo{
+.app__header{
+  text-align: center;
+  width:100%;
+}
+
+.app__logo{
   width:130px;
   padding-top:0.6em;
   padding-bottom:0.3em;
 }
 
-header{
-  text-align: center;
+.page-container{
   width:100%;
-}
-
-ul{
-  list-style: none;
-  margin:0;
-  padding:0;
-  li{
-    background-color: $sd-light-bg;
-    flex:1;
-    border:$sd-border;
-    text-align: center;
-    a{
-      display:block;
-      padding:1em 0;
-      color:black;
-      font-size:0.8em;
-      font-weight:600;
-    }
-  }
+  max-width: 100%;
+  transition: max-width 0.2s linear;
 }
 
 .nav{
@@ -58,6 +45,29 @@ ul{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+.nav__link{
+  display:block;
+  padding:1em 0;
+  color:black;
+  font-size:0.8em;
+  font-weight:600;
+  &:hover{
+    background: white;
+    transition: background 0.2s;
+  }
+}
+
+.nav__item{
+  background-color: $sd-light-bg;
+  transition: background 0.2s;
+  flex:1;
+  border:$sd-border;
+  text-align: center;
 }
 
 a{
@@ -74,12 +84,6 @@ h1{
   font-weight: 400;
   background-color: $sd-light-black;
   width:100%;
-}
-
-div{
-  .content-container{
-    width:100%;
-  }
 }
 
 .google-logo{
@@ -151,24 +155,26 @@ div{
 .user-list{
   display:flex;
   flex-direction: column;
-  .user-item{
-    display:flex;
-    padding:1em;
-    .follow-button{
-      margin:0 1em;
-    }
-  }
 }
 
-.log-in-form{
+.user-list__item{
+  display:flex;
+  padding:1em;
+}
+
+.follow-button{
+  margin:0 1em;
+}
+
+.auth-form{
   display:flex;
   flex-direction: column;
-  .log-in-input{
+  .auth-form__input{
     border:$sd-border;
     font-size: 1.2em;
     padding:0.5em;
   }
-  .log-in-button{
+  .auth-form__btn{
     font-size: 1.2em;
     padding:0.5em;
   }
@@ -224,11 +230,47 @@ div{
   }
 }
 
-.sign-up-error{
+.auth-form__error{
   margin:0.5em;
   padding:0.5em;
   background-color: white;
   border: solid tomato 2px;
   color:$sd-black;
   text-align: center;
+}
+
+@media screen and (min-width:500px){
+  .page-container{
+    max-width: 500px;
+    transition: max-width 0.2s linear;
+    margin-top: 25px;
+  }
+
+  .nav{
+    max-width: 500px;
+    margin:0 auto;
+  }
+
+  .nav__link{
+    color: white;
+    transition: background 0.2s;
+    &:hover{
+      background: white;
+      color: black;
+      transition: background 0.2s;
+    }
+  }
+
+  .nav__item{
+    background-color: rgba(0,0,0,0);
+    transition: background 0.2s;
+    border: none;
+  }
+}
+
+@media screen and (min-width:800px){
+  .page-container{
+    max-width: 500px;
+    transition: max-width 0.2s linear;
+  }
 }

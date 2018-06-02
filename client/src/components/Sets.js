@@ -17,26 +17,30 @@ class Sets extends Component {
     return (
       <div className="page-container">
         <h1>Recent Sets From All Users</h1>
-          <div className="set-container">
+          <div className="set">
             {
               sets && userList && sets.map(set =>
                 <Link key={`linkTo_${set.slug}_${uuidv1()}`} to={`/set/${set.slug}`}>
-                  <div className="set-item">
+                  <div className="set__item">
                     <img
                       alt={`Avater of ${set.username}`}
                       style={{width:60, height:60, backgroundColor:'white'}}
-                      className="thumbnail-image"
+                      className="set__item__thumbnail-image"
                       src={getUserAvatar(set.username)}
                     />
-                    <div className="set-item-info">
-                      <div className="date-venue">
+                    <div className="set__item__info">
+                      <div className="set__item__info__date-venue">
                         {format(set.date, FORMAT)} @ {set.location.venue}
                       </div>
-                      <div className="user">{set.username}</div>
-                      <div className="city-state">{set.location.address.city}, {set.location.address.state}</div>
+                      <div className="set__item__info__user">{set.username}</div>
+                      <div className="set__item__info__city-state">{set.location.address.city}, {set.location.address.state}</div>
                     </div>
-                    <div className="arrow-box">
-                      <img className="arrow-svg" width={30} alt="Forward Arrow" src={arrowSVG}/>
+                    <div className="set__item__arrow-box">
+                      <img className="set__item__arrow-box__arrow-svg"
+                        width={30}
+                        alt="Forward Arrow"
+                        src={arrowSVG}
+                      />
                     </div>
 
                   </div>

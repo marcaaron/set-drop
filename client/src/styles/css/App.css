@@ -1,9 +1,30 @@
+ul {
+  margin: 0;
+  padding: 0; }
+
+.maxwidth {
+  width: 100%; }
+
 body {
   margin: 0;
   padding: 0;
   font: 100% "Source Sans Pro", sans-serif;
   color: white;
   background-color: #2f2f2f; }
+
+a {
+  color: #00bac0;
+  text-decoration: none;
+  width: 100%; }
+
+h1 {
+  margin: 0;
+  padding: 0.6em 0;
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 400;
+  background-color: #5d5e5e;
+  width: 100%; }
 
 .app {
   display: flex;
@@ -33,77 +54,71 @@ body {
   list-style: none;
   margin: 0;
   padding: 0; }
+  .nav__link {
+    display: block;
+    padding: 1em 0;
+    color: black;
+    font-size: 0.8em;
+    font-weight: 600; }
+    .nav__link:hover {
+      background: white;
+      transition: background 0.2s; }
+  .nav__item {
+    background-color: #9dd8e1;
+    transition: background 0.2s;
+    flex: 1;
+    border: solid 1px #5d5e5e;
+    text-align: center; }
 
-.nav__link {
-  display: block;
-  padding: 1em 0;
-  color: black;
-  font-size: 0.8em;
-  font-weight: 600; }
-  .nav__link:hover {
-    background: white;
-    transition: background 0.2s; }
-
-.nav__item {
-  background-color: #9dd8e1;
-  transition: background 0.2s;
-  flex: 1;
-  border: solid 1px #5d5e5e;
-  text-align: center; }
-
-a {
-  color: #00bac0;
-  text-decoration: none;
-  width: 100%; }
-
-h1 {
-  margin: 0;
-  padding: 0.6em 0;
-  font-size: 1.2em;
-  text-align: center;
-  font-weight: 400;
-  background-color: #5d5e5e;
-  width: 100%; }
-
-.google-logo {
-  width: 8em;
-  margin-top: 0.5em; }
-
-.sign-up-form {
+.set {
   display: flex;
-  flex-direction: column;
-  width: 300px; }
+  flex-wrap: wrap; }
 
-.set-item {
+.set__date-place {
+  text-align: center;
+  padding: 0.5em; }
+
+.set__item {
   border: solid 1px #5d5e5e;
   display: flex;
   align-items: center; }
-  .set-item .thumbnail-image {
+  .set__item__thumbnail-image {
     margin: 0.5em; }
-  .set-item .set-item-info {
+  .set__item__info {
     color: white;
     margin-left: 0.5em; }
-    .set-item .set-item-info .date-venue {
+    .set__item__info__date-venue {
       font-size: 0.9em; }
-    .set-item .set-item-info .user {
+    .set__item__info__user {
       font-size: 1.3em; }
-  .set-item .arrow-box {
+  .set__item__arrow-box {
     display: flex;
     height: 2em;
     flex: 1;
     flex-direction: column;
     align-items: flex-end; }
-    .set-item .arrow-box .arrow-svg {
+    .set__item__arrow-box__arrow-svg {
       margin-right: 0.8em; }
 
-.set-container {
+.user-list {
   display: flex;
-  flex-wrap: wrap; }
+  flex-direction: column; }
+
+.user-list__item {
+  display: flex;
+  padding: 1em; }
+
+.user-list__follow-btn {
+  margin: 0 1em; }
 
 .venue-info {
   display: flex;
   flex-direction: column;
   width: 320px; }
+
+.google-logo {
+  width: 8em;
+  margin-top: 0.5em; }
 
 .rekordbox-dropbox {
   display: flex;
@@ -118,56 +133,6 @@ h1 {
 .rekordbox-logo {
   padding: 1em; }
 
-.user-list {
-  display: flex;
-  flex-direction: column; }
-
-.user-list__item {
-  display: flex;
-  padding: 1em; }
-
-.follow-button {
-  margin: 0 1em; }
-
-.auth-form {
-  display: flex;
-  flex-direction: column; }
-  .auth-form .auth-form__input {
-    border: solid 1px #5d5e5e;
-    font-size: 1.2em;
-    padding: 0.5em; }
-  .auth-form .auth-form__btn {
-    font-size: 1.2em;
-    padding: 0.5em; }
-
-.sign-up-link {
-  text-align: center;
-  padding: 0.5em; }
-
-.track-list {
-  display: flex;
-  flex-direction: column;
-  width: 100%; }
-
-.track {
-  display: flex; }
-  .track .track-item {
-    flex: 1;
-    padding: 0.5em;
-    font-size: 0.85em;
-    border: solid 1px #5d5e5e; }
-  .track .tracklist-header {
-    background-color: #5d5e5e;
-    text-align: center;
-    font-size: 1em; }
-
-.date-place {
-  text-align: center;
-  padding: 0.5em; }
-
-.set-container-top {
-  width: 100%; }
-
 .user-edit-controls {
   display: flex;
   flex-direction: column; }
@@ -179,6 +144,38 @@ h1 {
     width: 100%;
     font-size: 1.2em;
     padding: 0.5em; }
+
+.auth-form {
+  display: flex;
+  flex-direction: column; }
+  .auth-form__input {
+    border: solid 1px #5d5e5e;
+    font-size: 1.2em;
+    padding: 0.5em; }
+  .auth-form__btn {
+    font-size: 1.2em;
+    padding: 0.5em; }
+
+.sign-up-link {
+  text-align: center;
+  padding: 0.5em; }
+
+.track-list {
+  display: flex;
+  flex-direction: column; }
+
+.track-list__track {
+  display: flex; }
+  .track-list__track__item {
+    flex: 1;
+    padding: 0.5em;
+    font-size: 0.85em;
+    border: solid 1px #5d5e5e; }
+
+.track-list__track--header {
+  background-color: #5d5e5e;
+  text-align: center;
+  font-size: 1em; }
 
 .auth-form__error {
   margin: 0.5em;

@@ -103,10 +103,10 @@ class UserList extends Component {
                 </Link>
                 {currentUser && currentUser.following && currentUser.following.includes(user.username) ?
                   <button
-                    onClick={(e)=>this.handleUnfollow(e, user.username)} className="follow-button unfollow">Unfollow</button>
+                    onClick={(e)=>this.handleUnfollow(e, user.username)} className="user-list__follow-btn user-list__follow-btn--unfollow">Unfollow</button>
                   :
                   <button
-                    onClick={(e)=>this.handleFollow(e, user.username)} className="follow-button">Follow</button>
+                    onClick={(e)=>this.handleFollow(e, user.username)} className="user-list__follow-btn">Follow</button>
                 }
               </div>
             );

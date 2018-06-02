@@ -8,66 +8,25 @@ $sd-light-black: #5d5e5e;
 
 $sd-border: solid 1px $sd-light-black;
 
+// Resets
+
+ul{
+  margin:0;
+  padding:0;
+}
+
+// Globals
+
+.maxwidth{
+  width:100%;
+}
+
 body{
   margin: 0;
   padding: 0;
   font: 100% $font-stack;
   color: white;
   background-color: $sd-black;
-}
-
-.app{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.app__header{
-  text-align: center;
-  width:100%;
-}
-
-.app__logo{
-  width:130px;
-  padding-top:0.6em;
-  padding-bottom:0.3em;
-}
-
-.page-container{
-  width:100%;
-  max-width: 100%;
-  transition: max-width 0.2s linear;
-}
-
-.nav{
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  list-style: none;
-  margin:0;
-  padding:0;
-}
-
-.nav__link{
-  display:block;
-  padding:1em 0;
-  color:black;
-  font-size:0.8em;
-  font-weight:600;
-  &:hover{
-    background: white;
-    transition: background 0.2s;
-  }
-}
-
-.nav__item{
-  background-color: $sd-light-bg;
-  transition: background 0.2s;
-  flex:1;
-  border:$sd-border;
-  text-align: center;
 }
 
 a{
@@ -86,71 +45,106 @@ h1{
   width:100%;
 }
 
-.google-logo{
-  width:8em;
-  margin-top: 0.5em;
-}
-
-.sign-up-form{
+// App Styles
+.app{
   display:flex;
   flex-direction: column;
-  width:300px;
+  align-items: center;
 }
 
-.set-item{
+.app__header{
+  text-align: center;
+  width:100%;
+}
+
+.app__logo{
+  width:130px;
+  padding-top:0.6em;
+  padding-bottom:0.3em;
+}
+
+// Page Styles
+
+.page-container{
+  width:100%;
+  max-width: 100%;
+  transition: max-width 0.2s linear;
+}
+
+// Nav Styles
+
+.nav{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  margin:0;
+  padding:0;
+  @at-root #{&}__link{
+    display:block;
+    padding:1em 0;
+    color:black;
+    font-size:0.8em;
+    font-weight:600;
+    &:hover{
+      background: white;
+      transition: background 0.2s;
+    }
+  }
+  @at-root #{&}__item{
+    background-color: $sd-light-bg;
+    transition: background 0.2s;
+    flex:1;
+    border:$sd-border;
+    text-align: center;
+  }
+}
+
+
+// Set Styles
+
+.set{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.set__date-place{
+  text-align: center;
+  padding:0.5em;
+}
+
+.set__item{
   border:$sd-border;
   display:flex;
   align-items: center;
-  .thumbnail-image{
+  @at-root #{&}__thumbnail-image{
     margin:0.5em;
   }
-  .set-item-info{
+  @at-root #{&}__info{
     color:white;
     margin-left: 0.5em;
-    .date-venue{
+    @at-root #{&}__date-venue{
       font-size: 0.9em;
     }
-    .user{
+    @at-root #{&}__user{
      font-size: 1.3em;
     }
   }
-  .arrow-box{
+  @at-root #{&}__arrow-box{
     display:flex;
     height:2em;
     flex:1;
     flex-direction: column;
     align-items: flex-end;
-    .arrow-svg{
+    @at-root #{&}__arrow-svg{
       margin-right: 0.8em;
     }
   }
 }
 
-.set-container{
-  display:flex;
-  flex-wrap: wrap;
-}
-
-.venue-info{
-  display:flex;
-  flex-direction: column;
-  width:320px;
-}
-
-.rekordbox-dropbox{
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border:dotted 3px grey;
-}
-.rekordbox-dropbox-text{
-  padding-top:2em;
-}
-
-.rekordbox-logo{
-  padding:1em;
-}
+// User List
 
 .user-list{
   display:flex;
@@ -162,55 +156,41 @@ h1{
   padding:1em;
 }
 
-.follow-button{
+.user-list__follow-btn{
   margin:0 1em;
 }
 
-.auth-form{
+.user-list__follow-btn--unfollow{
+  // tbd
+}
+
+// Add Set
+
+.venue-info{
   display:flex;
   flex-direction: column;
-  .auth-form__input{
-    border:$sd-border;
-    font-size: 1.2em;
-    padding:0.5em;
-  }
-  .auth-form__btn{
-    font-size: 1.2em;
-    padding:0.5em;
-  }
+  width:320px;
 }
 
-.sign-up-link{
-  text-align:center;
-  padding:0.5em;
+.google-logo{
+  width:8em;
+  margin-top: 0.5em;
 }
 
-.track-list{
+.rekordbox-dropbox{
   display:flex;
-  flex-direction:column;
-  width:100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border:dotted 3px grey;
 }
 
-.track{
-  display:flex;
-  .track-item{
-    flex:1;
-    padding:0.5em;
-    font-size: 0.85em;
-    border:$sd-border;
-  }
-  .tracklist-header{
-    background-color: $sd-light-black;
-    text-align: center;
-    font-size:1em;
-  }
+.rekordbox-dropbox-text{
+  padding-top:2em;
 }
-.date-place{
-  text-align: center;
-  padding:0.5em;
-}
-.set-container-top{
-  width:100%;
+
+.rekordbox-logo{
+  padding:1em;
 }
 
 .user-edit-controls{
@@ -230,6 +210,52 @@ h1{
   }
 }
 
+
+// Sign In / Sign Up
+
+.auth-form{
+  display:flex;
+  flex-direction: column;
+
+  @at-root #{&}__input {
+    border:$sd-border;
+    font-size: 1.2em;
+    padding:0.5em;
+  }
+
+  @at-root #{&}__btn{
+    font-size: 1.2em;
+    padding:0.5em;
+  }
+}
+
+.sign-up-link{
+  text-align:center;
+  padding:0.5em;
+}
+
+// Track Styles
+
+.track-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.track-list__track{
+  display:flex;
+  @at-root #{&}__item{
+    flex:1;
+    padding:0.5em;
+    font-size: 0.85em;
+    border:$sd-border;
+  }
+}
+.track-list__track--header{
+  background-color: $sd-light-black;
+  text-align: center;
+  font-size:1em;
+}
+
 .auth-form__error{
   margin:0.5em;
   padding:0.5em;
@@ -238,6 +264,8 @@ h1{
   color:$sd-black;
   text-align: center;
 }
+
+// Media Queries
 
 @media screen and (min-width:500px){
   .page-container{
